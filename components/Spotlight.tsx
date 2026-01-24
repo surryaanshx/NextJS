@@ -8,7 +8,8 @@ const Spotlight: React.FC = () => {
   const revealRef = useScrollReveal();
   const { t } = useLanguage();
   
-  const icons = [Compass, ShieldCheck, Headset];
+  // Swapped order: Compass, Headset (Support), ShieldCheck (Pricing)
+  const icons = [Compass, Headset, ShieldCheck];
   const items = t('spotlight.items').map((item: any, i: number) => ({
     ...item,
     icon: icons[i]

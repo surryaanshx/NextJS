@@ -63,15 +63,15 @@ const translations = {
       items: [
         {
           title: "The Local Scout",
-          description: "Personally verified by our network of local scouts."
-        },
-        {
-          title: "Transparent Pricing",
-          description: "Clear, honest pricing with no hidden costs."
+          description: "Personally verified by our network of local experts."
         },
         {
           title: "24/7 Support",
           description: "Assistance whenever you need it, wherever you are."
+        },
+        {
+          title: "Transparent Pricing",
+          description: "Clear, honest pricing with no hidden costs."
         }
       ]
     },
@@ -159,15 +159,15 @@ const translations = {
       items: [
         {
           title: "当地向导",
-          description: "由我们的当地向导网络亲自验证。"
-        },
-        {
-          title: "价格透明",
-          description: "价格清晰诚实，无隐藏费用。"
+          description: "由我们的当地专家网络亲自验证。"
         },
         {
           title: "24/7 全天候支持",
           description: "随时随地为您提供协助。"
+        },
+        {
+          title: "价格透明",
+          description: "价格清晰诚实，无隐藏费用。"
         }
       ]
     },
