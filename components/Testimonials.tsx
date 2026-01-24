@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, ArrowLeft, Quote } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Quote, Star } from 'lucide-react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -16,52 +16,73 @@ const Testimonials: React.FC = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       next();
-    }, 5000);
+    }, 6000);
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <section className="py-12 px-8 bg-[#F5F3FF] text-[#1E1B4B] overflow-hidden relative border-y border-[#1E1B4B]/5">
-      <div ref={revealRef} className="reveal max-w-4xl mx-auto text-center space-y-6 relative z-10">
-        <div className="space-y-2">
-          <Quote className="w-8 h-8 text-[#6D28D9] mx-auto opacity-30" />
-          <h2 className="text-2xl md:text-3xl serif italic text-[#1E1B4B]">{t('testimonials.title')}</h2>
+    <section className="py-16 px-6 md:px-8 bg-[#1E1B4B] text-white relative overflow-hidden">
+      {/* Background Decor */}
+      <div className="absolute top-0 right-0 opacity-5 pointer-events-none">
+        <Quote className="w-[300px] h-[300px] -translate-y-1/2 translate-x-1/2" />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0F0E2A]/50 pointer-events-none" />
+
+      <div ref={revealRef} className="reveal max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 md:gap-16 items-center relative z-10">
+        
+        {/* Left: Heading & Controls */}
+        <div className="space-y-6">
+          <div className="flex items-center gap-2 text-[#FA4D3F] font-black text-[10px] uppercase tracking-widest">
+            <Star className="w-3.5 h-3.5 fill-current" />
+            <span>Trusted by Explorers</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl serif font-bold leading-tight">
+            {t('testimonials.title')}
+          </h2>
+          
+          <div className="flex gap-3 pt-2">
+            <button 
+              onClick={prev}
+              className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-[#1E1B4B] transition-all duration-300"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </button>
+            <button 
+              onClick={next}
+              className="w-10 h-10 rounded-full bg-white text-[#1E1B4B] flex items-center justify-center hover:bg-[#6D28D9] hover:text-white transition-all duration-300 shadow-lg"
+            >
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
-        <div className="relative min-h-[120px] flex items-center justify-center overflow-hidden">
-          <div key={index} className="animate-slide-in space-y-4 max-w-2xl px-4">
-            <p className="text-base md:text-lg font-medium italic leading-relaxed text-[#1E1B4B]/80">
-              "{reviews[index].text}"
-            </p>
-            <div className="space-y-0.5">
-              <h4 className="text-xs font-black uppercase tracking-[0.2em] text-[#6D28D9]">{reviews[index].author}</h4>
-              <p className="text-[9px] uppercase tracking-[0.3em] text-[#1E1B4B]/40 font-bold">{reviews[index].role}</p>
+        {/* Right: Active Testimonial Card */}
+        <div className="relative">
+            <div key={index} className="bg-white/5 backdrop-blur-xl border border-white/10 p-6 md:p-8 rounded-[1.5rem] space-y-6 animate-slide-in relative overflow-hidden">
+               <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#6D28D9] via-[#FA4D3F] to-[#6D28D9]" />
+               
+               <div className="flex gap-1">
+                 {[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 text-[#FA4D3F] fill-[#FA4D3F]" />)}
+               </div>
+
+               <p className="text-lg md:text-xl font-medium serif leading-relaxed text-white/90">
+                 "{reviews[index].text}"
+               </p>
+
+               <div className="flex items-center gap-4 pt-4 border-t border-white/10">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#6D28D9] to-[#FA4D3F] p-0.5">
+                     <div className="w-full h-full rounded-full bg-[#1E1B4B] flex items-center justify-center text-[10px] font-bold">
+                       {reviews[index].author.charAt(0)}
+                     </div>
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-bold uppercase tracking-widest">{reviews[index].author}</h4>
+                    <p className="text-[9px] uppercase tracking-widest text-white/40 font-bold mt-0.5">{reviews[index].role}</p>
+                  </div>
+               </div>
             </div>
-          </div>
         </div>
 
-        <div className="flex justify-center items-center gap-10 pt-2">
-          <button 
-            onClick={prev}
-            className="group flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-[#1E1B4B] hover:text-[#6D28D9] transition-all"
-          >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> {t('testimonials.prev')}
-          </button>
-          <div className="flex gap-1.5">
-            {reviews.map((_: any, i: number) => (
-              <div 
-                key={i} 
-                className={`h-1 rounded-full transition-all duration-700 ${i === index ? 'w-6 bg-[#6D28D9]' : 'w-1 bg-[#1E1B4B]/10'}`} 
-              />
-            ))}
-          </div>
-          <button 
-            onClick={next}
-            className="group flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-[#1E1B4B] hover:text-[#6D28D9] transition-all"
-          >
-            {t('testimonials.next')} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </div>
       </div>
     </section>
   );

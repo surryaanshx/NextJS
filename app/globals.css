@@ -11,13 +11,17 @@
   --lavender-wash: #F5F3FF;
 }
 
-html, body {
+html {
   background-color: #FFFFFF;
+  scroll-behavior: smooth;
+}
+
+body {
   margin: 0;
   padding: 0;
   color: var(--ink);
-  scroll-behavior: smooth;
   overflow-x: hidden;
+  width: 100%;
 }
 
 /* 
