@@ -20,8 +20,12 @@ html, body {
   overflow-x: hidden;
 }
 
+/* 
+   We map this to the variable defined in layout.tsx 
+   so that specific .serif usage picks up the correct font file 
+*/
 .serif {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-playfair), serif;
 }
 
 /* Scroll Reveal Animations */
