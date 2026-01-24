@@ -18,7 +18,7 @@ const Spotlight: React.FC = () => {
     <section className="py-24 md:py-32 px-6 md:px-8 relative overflow-hidden group/spotlight bg-white">
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <img 
-          src="https://images.unsplash.com/photo-1528181304800-2f140819ad1c?auto=format&fit=crop&q=80&w=2000" 
+          src="/thailand.png" 
           className="w-full h-full object-cover opacity-[0.6] scale-110 group-hover/spotlight:scale-105 transition-transform duration-[20000ms] ease-out grayscale-[0.2]"
           alt="Thailand Landscape"
         />
