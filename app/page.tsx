@@ -1,83 +1,89 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import Navbar from '../components/Navbar';
-import Hero from '../components/Hero';
-import Collections from '../components/Collections';
-import Spotlight from '../components/Spotlight';
-import Footer from '../components/Footer';
-import Testimonials from '../components/Testimonials';
-import { ChevronUp } from 'lucide-react';
-import { useLanguage } from '../context/LanguageContext';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { Metadata } from 'next';
+import HomeClient from '../components/HomeClient';
 
-export default function Home() {
-  const [showScroll, setShowScroll] = useState(false);
-  const inquiryRef = useScrollReveal();
-  const { language, t } = useLanguage();
+export const metadata: Metadata = {
+  title: 'Boom Boom Thailand | Bespoke Travel & Elite Expeditions',
+  description: 'Experience luxury travel redefined. Bespoke tours and elite expeditions personally curated by local experts in Thailand. Discover hidden gems with our exclusive scout network.',
+  keywords: ['luxury travel Thailand', 'bespoke tours', 'private expeditions', 'luxury retreats', 'exclusive travel agency'],
+  authors: [{ name: 'Boom Boom Thailand Team' }],
+  metadataBase: new URL('https://boomboomthailand.com'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'Boom Boom Thailand | Bespoke Travel & Elite Expeditions',
+    description: 'Bespoke tours and elite expeditions personally curated by local experts in Thailand.',
+    url: 'https://boomboomthailand.com',
+    siteName: 'Boom Boom Thailand',
+    images: [
+      {
+        url: '/thailand.png',
+        width: 1200,
+        height: 630,
+        alt: 'Boom Boom Thailand Luxury Travel',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Boom Boom Thailand | Bespoke Travel & Elite Expeditions',
+    description: 'Bespoke tours and elite expeditions personally curated by local experts in Thailand.',
+    site: '@boomboomthailand',
+    creator: '@boomboomthailand',
+    images: ['/thailand.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+};
 
-  useEffect(() => {
-    const checkScroll = () => {
-      setShowScroll(window.pageYOffset > 400);
-    };
-    window.addEventListener('scroll', checkScroll);
-    return () => window.removeEventListener('scroll', checkScroll);
-  }, []);
-
-  const scrollTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
+export default function Page() {
   return (
-    <div className="min-h-screen bg-white selection:bg-[#6D28D9] selection:text-white relative">
-      <Navbar />
-      
-      <main key={language} className="bg-white">
-        <Hero />
-        
-        <div className="max-w-7xl mx-auto px-8 bg-white">
-          <div className="border-t border-[#1E1B4B]/10 w-full" />
-        </div>
-
-        <Collections />
-        <Testimonials />
-        <Spotlight />
-        
-        <section id="inquiry" className="py-24 px-8 bg-[#F5F3FF] text-[#1E1B4B] relative overflow-hidden">
-           <div className="absolute top-0 right-0 w-80 h-80 bg-[#6D28D9]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-           <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#1E40AF]/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
-
-          <div ref={inquiryRef} className="reveal max-w-3xl mx-auto text-center space-y-8 relative z-10">
-            <h2 className="text-4xl font-bold serif italic text-[#1E1B4B]">{t('inquiry.title')}</h2>
-            <p className="text-[#1E1B4B]/70 text-base max-w-lg mx-auto leading-relaxed font-medium">
-              {t('inquiry.desc')}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <input 
-                type="email" 
-                placeholder={t('inquiry.placeholder')}
-                className="bg-white border-2 border-[#6D28D9]/10 px-6 py-4 rounded-sm outline-none focus:border-[#6D28D9] transition-all sm:w-80 text-center sm:text-left text-[#1E1B4B] placeholder:text-[#1E1B4B]/30 font-bold text-sm shadow-sm"
-              />
-              <button className="bg-[#6D28D9] text-white px-10 py-4 rounded-sm font-bold uppercase tracking-widest hover:bg-[#1E40AF] transition-all duration-300 text-xs shadow-[0_10px_20px_-5px_rgba(109,40,217,0.3)] hover:shadow-[0_15px_30px_-5px_rgba(30,64,175,0.4)] hover:-translate-y-1 transform-gpu">
-                {t('inquiry.button')}
-              </button>
-            </div>
-            <p className="text-[10px] uppercase tracking-widest text-[#6D28D9] font-black">
-              {t('inquiry.limited')}
-            </p>
-          </div>
-        </section>
-      </main>
-
-      <Footer />
-
-      <button 
-        onClick={scrollTop}
-        className={`fixed bottom-6 right-6 z-50 bg-[#6D28D9] text-white p-2.5 rounded-full shadow-2xl hover:bg-[#1E40AF] transition-all duration-500 transform-gpu border border-white/20 
-          ${showScroll ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-75 pointer-events-none'}`}
-        aria-label="Scroll to top"
-      >
-        <ChevronUp className="w-5 h-5" />
-      </button>
-    </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "TravelAgency",
+            "name": "Boom Boom Thailand",
+            "image": "https://boomboomthailand.com/thailand.png",
+            "url": "https://boomboomthailand.com",
+            "telephone": "989-989-9899",
+            "priceRange": "$$$",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Bangkok",
+              "addressCountry": "TH"
+            },
+            "openingHoursSpecification": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+              ],
+              "opens": "00:00",
+              "closes": "23:59"
+            }
+          })
+        }}
+      />
+      <HomeClient />
+    </>
   );
 }
