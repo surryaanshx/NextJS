@@ -4,7 +4,6 @@ import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import Collections from '../components/Collections';
 import Spotlight from '../components/Spotlight';
-import ScoutInterface from '../components/ScoutInterface';
 import Footer from '../components/Footer';
 import Testimonials from '../components/Testimonials';
 import { ChevronUp } from 'lucide-react';
@@ -40,7 +39,6 @@ export default function Home() {
         </div>
 
         <Collections />
-        <ScoutInterface />
         <Testimonials />
         <Spotlight />
         
