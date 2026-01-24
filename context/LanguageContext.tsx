@@ -13,12 +13,9 @@ const translations = {
   en: {
     nav: {
       collections: 'Collections',
-      activities: 'Activities',
       destinations: 'Destinations',
-      journal: 'Journal',
       search: 'Search',
       startExpedition: 'Start Expedition',
-      eliteExpeditions: 'Elite Expeditions'
     },
     hero: {
       title: 'Explore the World,',
@@ -75,19 +72,6 @@ const translations = {
         }
       ]
     },
-    scout: {
-      label: 'System Intelligence',
-      title: 'The Scout Network',
-      subtitle: 'Our proprietary network of local experts provides real-time data on hidden gems, weather patterns, and cultural events.',
-      cta: 'Access Terminal',
-      analyzing: 'Analyzing...',
-      ready: 'System Ready',
-      features: [
-        { title: 'Real-time Intel', desc: 'Live updates from the ground.' },
-        { title: 'Safety Protocol', desc: 'Vetted routes and guides.' },
-        { title: 'AI Optimization', desc: 'Smart itinerary matching.' }
-      ]
-    },
     inquiry: {
       title: 'Begin Your Expedition',
       desc: 'Our scouts are ready to architect your next journey. Reach out to discuss bespoke collections and private departures.',
@@ -98,9 +82,9 @@ const translations = {
     footer: {
       motto: '"We don\'t just plan travel; we architect the narratives that define a lifetime of discovery."',
       world: 'Our World',
-      worldLinks: ['Collections', 'Our Ethos', 'Private Scouts', 'Discovery'],
+      worldLinks: ['Collections', 'Destinations', 'Private Scouts'],
       resources: 'Resources',
-      resourceLinks: ['The Journal', 'Press Kit', 'Careers', 'Impact'],
+      resourceLinks: ['Press Kit', 'Careers', 'Impact'],
       legal: 'Legal',
       legalLinks: ['Privacy', 'Terms', 'Cookies'],
       rights: '© 2025 BOOM BOOM THAILAND. ALL RIGHTS RESERVED.'
@@ -109,12 +93,9 @@ const translations = {
   zh: {
     nav: {
       collections: '精选系列',
-      activities: '活动体验',
       destinations: '目的地',
-      journal: '旅行日志',
       search: '搜索',
       startExpedition: '开启远征',
-      eliteExpeditions: '精英探险'
     },
     hero: {
       title: '探索世界，',
@@ -171,19 +152,6 @@ const translations = {
         }
       ]
     },
-    scout: {
-      label: '系统智能',
-      title: '向导网络',
-      subtitle: '我们独有的当地专家网络提供关于隐秘景点、天气模式和文化活动的实时数据。',
-      cta: '访问终端',
-      analyzing: '分析中...',
-      ready: '系统就绪',
-      features: [
-        { title: '实时情报', desc: '来自地面的实时更新。' },
-        { title: '安全协议', desc: '经过审查的路线和向导。' },
-        { title: 'AI 优化', desc: '智能行程匹配。' }
-      ]
-    },
     inquiry: {
       title: '开启您的远征',
       desc: '我们的向导已准备好策划您的下一次旅程。联系我们讨论定制系列和私人行程。',
@@ -194,9 +162,9 @@ const translations = {
     footer: {
       motto: '“我们不只是策划旅行；我们构建定义一生探索的叙事。”',
       world: '我们的世界',
-      worldLinks: ['系列', '我们的理念', '私人向导', '发现'],
+      worldLinks: ['系列', '目的地', '私人向导'],
       resources: '资源中心',
-      resourceLinks: ['日志', '新闻包', '职业发展', '影响力'],
+      resourceLinks: ['新闻包', '职业发展', '影响力'],
       legal: '法律声明',
       legalLinks: ['隐私政策', '服务条款', 'Cookie 政策'],
       rights: '© 2025 BOOM BOOM 泰国。保留所有权利。'
