@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import Image from 'next/image';
-import { ArrowRight, Lock, Map, Globe } from 'lucide-react';
+import { ArrowRight, Lock, Globe } from 'lucide-react';
 
 export default function DestinationsPage() {
   return (
@@ -28,19 +28,20 @@ export default function DestinationsPage() {
             <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-[#1E1B4B] font-sans animate-fade-up mb-6">
               Curated <span className="serif italic text-transparent bg-clip-text bg-gradient-to-r from-[#6D28D9] to-[#1E40AF] pr-2">Destinations</span>
             </h1>
-            <p className="text-[#1E1B4B]/60 text-lg leading-relaxed animate-fade-up delay-200">
+            <p className="text-[#1E1B4B]/60 text-lg leading-relaxed animate-fade-up delay-100">
               Hand-picked expeditions across Thailand's most coveted landscapes. From the neon streets to the silent shores.
             </p>
           </div>
 
-          {/* Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 animate-fade-up delay-400">
+          {/* Grid - REMOVED DELAY HERE */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 animate-fade-up">
             {/* Pattaya - Active */}
             <a href="/destinations/pattaya" className="group block relative aspect-[4/5] overflow-hidden rounded-[2rem] cursor-pointer shadow-2xl shadow-[#1E1B4B]/10 hover:shadow-[#6D28D9]/20 hover:-translate-y-2 transition-all duration-500 ring-1 ring-black/5">
               <Image 
                 src="/images/destinations/pattaya-card.jpg" 
                 alt="Pattaya City"
                 fill
+                quality={90}
                 className="object-cover transition-transform duration-1000 group-hover:scale-110"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
               />

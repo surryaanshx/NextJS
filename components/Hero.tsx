@@ -1,8 +1,12 @@
 'use client';
-import { Search, ArrowRight, MapPin, Play } from 'lucide-react';
+import { Search, ArrowRight } from 'lucide-react';
 import React from 'react';
 import Image from 'next/image';
 import { useLanguage } from '../context/LanguageContext';
+
+// 1. Static Import (Simulated path for Next.js optimization)
+// In a real local environment, this allows Next.js to calculate width/height/blur automatically.
+// For now, we keep the string path but remove the delay which is the real killer.
 
 const Hero: React.FC = () => {
   const { t } = useLanguage();
@@ -12,22 +16,25 @@ const Hero: React.FC = () => {
       <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-20 items-center relative z-10 w-full">
         
         {/* Visual Content (Right Side on Desktop) */}
-        <div className="lg:col-span-6 relative mt-12 lg:mt-0 order-first lg:order-last group flex justify-center lg:justify-end">
+        {/* CHANGED: Removed 'opacity-0', 'animate-slide-right', and 'delay-600' */}
+        <div className="lg:col-span-6 relative mt-12 lg:mt-0 order-first lg:order-last group flex justify-center lg:justify-end animate-fade-in">
           {/* Reduced max-w by 1% (500px * 0.99 = 495px) */}
-          <div className="opacity-0 animate-slide-right delay-600 relative z-10 w-full max-w-[495px]">
+          <div className="relative z-10 w-full max-w-[495px]">
             <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-[0_40px_100px_-20px_rgba(109,40,217,0.2)] ring-1 ring-white/50 relative">
+               {/* CHANGED: Added quality={90} and removed transition delays on the image itself */}
                <Image 
                 src="/images/home/hero-main.jpg" 
                 alt="Luxury Thailand scenery"
                 fill
-                priority
-                className="object-cover scale-110 group-hover:scale-100 transition-transform duration-[1.5s]"
+                priority={true}
+                quality={90}
+                className="object-cover scale-105 group-hover:scale-100 transition-transform duration-[1.5s]"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1E1B4B]/40 to-transparent mix-blend-multiply pointer-events-none" />
               
-              {/* Floating Badge */}
-              <a href="/destinations/pattaya" className="absolute bottom-8 left-8 right-8 bg-white/10 backdrop-blur-xl border border-white/20 p-5 rounded-2xl shadow-2xl animate-fade-up delay-800 transition-all duration-500 hover:bg-white/20 hover:border-white/30 hover:-translate-y-1 hover:shadow-[0_20px_40px_-10px_rgba(255,255,255,0.1)] cursor-pointer group/badge block">
+              {/* Floating Badge - Kept animation but sped it up */}
+              <a href="/destinations/pattaya" className="absolute bottom-8 left-8 right-8 bg-white/10 backdrop-blur-xl border border-white/20 p-5 rounded-2xl shadow-2xl animate-fade-up delay-200 transition-all duration-500 hover:bg-white/20 hover:border-white/30 hover:-translate-y-1 hover:shadow-[0_20px_40px_-10px_rgba(255,255,255,0.1)] cursor-pointer group/badge block">
                 <div className="flex items-center justify-between">
                   <div className="flex flex-col">
                     <span className="text-white/60 text-[9px] uppercase tracking-widest font-bold mb-1 group-hover/badge:text-white/80 transition-colors">Featured Expedition</span>
@@ -46,25 +53,25 @@ const Hero: React.FC = () => {
           </div>
         </div>
 
-        {/* Text Content */}
+        {/* Text Content - Kept animations but synchronized better */}
         <div className="lg:col-span-6 space-y-8 flex flex-col items-start text-left -translate-y-[1%]">
           <div className="space-y-6 w-full">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F5F3FF] border border-[#6D28D9]/10 opacity-0 animate-fade-in delay-200">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F5F3FF] border border-[#6D28D9]/10 opacity-0 animate-fade-in">
                <div className="w-2 h-2 rounded-full bg-[#6D28D9] animate-pulse" />
                <span className="text-[#6D28D9] text-[10px] font-black uppercase tracking-widest">Now Booking Summer 2026</span>
             </div>
             
-            <h1 className="opacity-0 animate-fade-up delay-400 text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] font-bold text-[#1E1B4B] tracking-tight">
+            <h1 className="opacity-0 animate-fade-up delay-100 text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] font-bold text-[#1E1B4B] tracking-tight">
               {t('hero.title')} <br />
               <span className="italic serif text-transparent bg-clip-text bg-gradient-to-r from-[#6D28D9] via-[#8B5CF6] to-[#FA4D3F] animate-gradient-x bg-[length:200%_auto]">{t('hero.italic')}</span>
             </h1>
           </div>
           
-          <p className="opacity-0 animate-fade-in delay-600 text-base md:text-lg leading-relaxed text-[#1E1B4B]/60 font-medium max-w-xl">
+          <p className="opacity-0 animate-fade-in delay-200 text-base md:text-lg leading-relaxed text-[#1E1B4B]/60 font-medium max-w-xl">
             {t('hero.desc')}
           </p>
 
-          <div className="pt-4 opacity-0 animate-fade-up delay-800 w-full max-w-lg">
+          <div className="pt-4 opacity-0 animate-fade-up delay-300 w-full max-w-lg">
             <div className="group flex items-center gap-2 shadow-[0_20px_50px_-10px_rgba(109,40,217,0.15)] rounded-full overflow-hidden bg-white p-1.5 border border-[#1E1B4B]/5 hover:border-[#6D28D9]/30 transition-all">
               <div className="flex-1 flex items-center px-5">
                 <Search className="w-4 h-4 text-[#6D28D9]/60 mr-4" />
@@ -80,7 +87,7 @@ const Hero: React.FC = () => {
             </div>
           </div>
           
-          <div className="opacity-0 animate-fade-in delay-1000 flex items-center gap-6 pt-2">
+          <div className="opacity-0 animate-fade-in delay-500 flex items-center gap-6 pt-2">
              <div className="flex -space-x-3">
                {[1,2,3].map(i => (
                  <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-gray-200 overflow-hidden">
