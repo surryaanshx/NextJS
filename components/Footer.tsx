@@ -4,10 +4,10 @@ import { Instagram, Twitter, Linkedin, Mail, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 const Footer: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
-    <footer className="bg-[#1E1B4B] text-[#F5F3FF] pt-16 md:pt-24 pb-8 md:pb-12 relative overflow-hidden">
+    <footer key={language} className="bg-[#1E1B4B] text-[#F5F3FF] pt-16 md:pt-24 pb-8 md:pb-12 relative overflow-hidden animate-fade-in">
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#6D28D9]/10 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2" />
       <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[#1E40AF]/10 blur-[100px] rounded-full -translate-x-1/2 translate-y-1/2" />
 

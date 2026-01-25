@@ -8,10 +8,10 @@ import { useLanguage } from '../../context/LanguageContext';
 
 export default function DestinationsPage() {
   const [isPattayaLoaded, setIsPattayaLoaded] = useState(false);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
-    <div className="bg-white min-h-screen relative overflow-hidden">
+    <div key={language} className="bg-white min-h-screen relative overflow-hidden animate-fade-in">
       <Navbar />
       
       {/* Global Grain Texture Overlay */}
@@ -37,8 +37,9 @@ export default function DestinationsPage() {
             </p>
           </div>
 
-          {/* Grid: Desktop 3 columns (Horizontal), Mobile 1 column (Vertical) */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 animate-fade-up opacity-0" style={{ animationDelay: '400ms' }}>
+          {/* Grid: Desktop 4 columns (Horizontal), Mobile 1 column (Vertical) */}
+          {/* Layout: Active, Locked, Faded Outline, Empty */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8 animate-fade-up opacity-0" style={{ animationDelay: '400ms' }}>
             
             {/* 1. Pattaya - Active */}
             <a href="/destinations/pattaya" className="group block relative aspect-[4/5] overflow-hidden rounded-[2rem] cursor-pointer shadow-2xl shadow-[#1E1B4B]/10 hover:shadow-[#6D28D9]/20 hover:-translate-y-2 transition-all duration-500 ring-1 ring-black/5 bg-[#F5F3FF]">
@@ -51,7 +52,7 @@ export default function DestinationsPage() {
                 className={`object-cover transition-all duration-700 ease-out group-hover:scale-110
                    ${isPattayaLoaded ? 'scale-100 blur-0 opacity-100' : 'scale-110 blur-xl opacity-0'}
                 `}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1E1B4B] via-[#1E1B4B]/20 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none" />
               
@@ -66,7 +67,7 @@ export default function DestinationsPage() {
                     <span className="text-white/80 text-[10px] font-black uppercase tracking-[0.2em]">{t('destinationsPage.location')}</span>
                     <span className="text-white text-xs font-serif italic">{t('destinationsPage.duration')}</span>
                   </div>
-                  <h2 className="text-3xl serif font-bold text-white leading-none">Pattaya City</h2>
+                  <h2 className="text-3xl serif font-bold text-white leading-none">{t('destinationsPage.pattayaTitle')}</h2>
                   <div className="flex items-center gap-2 text-white/80 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                     <span>{t('destinationsPage.explore')}</span>
                     <ArrowRight className="w-3 h-3" />
@@ -89,18 +90,20 @@ export default function DestinationsPage() {
                  </span>
             </div>
 
-            {/* 3. Locked Card (Half Faded) */}
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-gradient-to-br from-white to-[#F5F3FF]/50 border border-[#1E1B4B]/5 flex flex-col items-center justify-center text-center p-6 opacity-40 hover:opacity-100 transition-opacity duration-500 grayscale hover:grayscale-0">
-                 <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]" />
+            {/* 3. Locked Card (Half Faded Outline) */}
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border-2 border-dashed border-[#1E1B4B]/10 flex flex-col items-center justify-center text-center p-6 opacity-60"
+                 style={{ maskImage: 'linear-gradient(to right, black 20%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to right, black 20%, transparent 100%)' }}>
                  
-                 <div className="relative z-10 w-16 h-16 rounded-2xl bg-white/50 shadow-sm flex items-center justify-center mb-6">
-                    <Lock className="w-6 h-6 text-[#1E1B4B]/10" />
+                 <div className="relative z-10 w-16 h-16 rounded-2xl bg-[#F5F3FF]/50 border border-[#1E1B4B]/5 flex items-center justify-center mb-6">
+                    <Lock className="w-6 h-6 text-[#1E1B4B]/20" />
                  </div>
                  
-                 <h3 className="relative z-10 text-[#1E1B4B]/50 font-bold font-serif text-xl mb-2">{t('destinationsPage.secret')}</h3>
-                 <span className="relative z-10 text-[#1E1B4B]/30 font-black uppercase tracking-widest text-[10px] px-3 py-1 rounded-full">
-                   {t('destinationsPage.comingSoon')}
-                 </span>
+                 <h3 className="relative z-10 text-[#1E1B4B]/40 font-bold font-serif text-xl mb-2">{t('destinationsPage.secret')}</h3>
+            </div>
+            
+            {/* 4. Empty Space */}
+            <div className="hidden md:block">
+              {/* Intentionally left empty to simulate 'more coming' space */}
             </div>
             
           </div>

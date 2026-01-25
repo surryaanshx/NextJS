@@ -14,9 +14,9 @@ const Hero: React.FC = () => {
         
         {/* Visual Content (Right Side on Desktop, Top on Mobile) */}
         <div className="lg:col-span-6 relative order-first lg:order-last group flex justify-center lg:justify-end animate-fade-in">
-          {/* Mobile Optimized: Reduced max-w and padding for compactness */}
+          {/* Mobile Optimized: Aspect ratio roughly 5:3 (1.66) using 16/9, reduced max-w and padding for compactness */}
           <div className="relative z-10 w-full max-w-[320px] md:max-w-[495px]">
-            <div className={`aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-[0_40px_100px_-20px_rgba(109,40,217,0.2)] ring-1 ring-white/50 relative bg-[#F5F3FF] transition-all duration-700 ${isLoaded ? 'shadow-2xl' : 'shadow-none'}`}>
+            <div className={`aspect-[16/9] md:aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-[0_40px_100px_-20px_rgba(109,40,217,0.2)] ring-1 ring-white/50 relative bg-[#F5F3FF] transition-all duration-700 ${isLoaded ? 'shadow-2xl' : 'shadow-none'}`}>
                <Image 
                 src="/images/home/hero-main.jpg" 
                 alt="Luxury Thailand scenery"
@@ -37,7 +37,7 @@ const Hero: React.FC = () => {
                 <div className="flex items-center justify-between">
                   <div className="flex flex-col">
                     <span className="text-white/60 text-[9px] uppercase tracking-widest font-bold mb-1 group-hover/badge:text-white/80 transition-colors">{t('hero.featuredBadge')}</span>
-                    <span className="text-white text-base md:text-lg serif font-bold">Pattaya City</span>
+                    <span className="text-white text-base md:text-lg serif font-bold">{t('hero.pattayaCity')}</span>
                   </div>
                   <div className="w-8 h-8 md:w-10 md:h-10 bg-white rounded-full flex items-center justify-center text-[#1E1B4B] group-hover/badge:scale-110 group-hover/badge:bg-[#F5F3FF] transition-all duration-300">
                     <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4" />

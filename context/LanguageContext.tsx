@@ -24,7 +24,8 @@ const translations = {
       placeholder: 'Where to wander?',
       explore: 'Explore',
       bookingBadge: 'Now Booking Summer 2026',
-      featuredBadge: 'Featured Expedition'
+      featuredBadge: 'Featured Expedition',
+      pattayaCity: 'Pattaya City'
     },
     collections: {
       curated: 'Curated Selections',
@@ -47,7 +48,8 @@ const translations = {
       secret: 'Secret Location',
       comingSoon: 'Coming Soon',
       duration: '7 Days',
-      location: 'Thailand'
+      location: 'Thailand',
+      pattayaTitle: 'Pattaya City'
     },
     pattayaPage: {
       tag: 'Thailand',
@@ -277,7 +279,8 @@ const translations = {
       placeholder: '想去哪里流浪？',
       explore: '探索',
       bookingBadge: '2026年夏季预订开启',
-      featuredBadge: '精选远征'
+      featuredBadge: '精选远征',
+      pattayaCity: '芭堤雅 (Pattaya City)'
     },
     collections: {
       curated: '精选推荐',
@@ -301,7 +304,8 @@ const translations = {
       secret: '神秘地点',
       comingSoon: '即将推出',
       duration: '7 天',
-      location: '泰国'
+      location: '泰国',
+      pattayaTitle: '芭堤雅 (Pattaya City)'
     },
     pattayaPage: {
       tag: '泰国',
@@ -524,16 +528,8 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [language, setLanguageState] = useState<Language>('en');
 
-  useEffect(() => {
-    const saved = localStorage.getItem('app-language');
-    if (saved) {
-      setLanguageState(saved as Language);
-    }
-  }, []);
-
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    localStorage.setItem('app-language', lang);
     document.documentElement.lang = lang;
   };
 

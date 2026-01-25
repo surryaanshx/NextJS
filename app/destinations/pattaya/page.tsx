@@ -5,11 +5,11 @@ import Footer from '../../../components/Footer';
 import BookingWidget from '../../../components/BookingWidget';
 import TripDetails from '../../../components/TripDetails';
 import Image from 'next/image';
-import { MapPin, Star, Share2, Heart } from 'lucide-react';
+import { MapPin, Star, Share2, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../../../context/LanguageContext';
 
 export default function PattayaPage() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   // Data Definition
   const stats = t('pattayaPage.stats');
@@ -38,12 +38,20 @@ export default function PattayaPage() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
-    }, 3000);
+    }, 4000);
     return () => clearInterval(timer);
   }, [galleryImages.length]);
 
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+  };
+
   return (
-    <div className="bg-[#FAFAFA] min-h-screen relative">
+    <div key={language} className="bg-[#FAFAFA] min-h-screen relative animate-fade-in">
       <Navbar />
       
       {/* Global Grain Texture Overlay */}
@@ -191,7 +199,7 @@ export default function PattayaPage() {
 
          {/* MOBILE GALLERY (Slider - Visible only on mobile) */}
          <div className="md:hidden mb-12 animate-fade-up opacity-0" style={{ animationDelay: '400ms' }}>
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2.5rem] shadow-xl shadow-[#1E1B4B]/10">
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2.5rem] shadow-xl shadow-[#1E1B4B]/10 group">
               {galleryImages.map((img, index) => (
                 <div 
                   key={index}
@@ -215,6 +223,22 @@ export default function PattayaPage() {
                 </div>
               ))}
               
+              {/* Manual Navigation Controls */}
+              <button 
+                onClick={(e) => { e.preventDefault(); prevSlide(); }}
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white active:scale-95 transition-all"
+                aria-label="Previous Slide"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button 
+                onClick={(e) => { e.preventDefault(); nextSlide(); }}
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white active:scale-95 transition-all"
+                aria-label="Next Slide"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+
               {/* Progress Indicators */}
               <div className="absolute top-6 right-6 z-30 flex gap-1.5">
                 {galleryImages.map((_, i) => (
