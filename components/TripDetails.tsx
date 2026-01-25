@@ -6,6 +6,7 @@ import {
   BedDouble, Users, ChevronDown, Utensils, ChevronUp, Calendar, Star 
 } from 'lucide-react';
 import { TripStats, TripHighlight, ItineraryDay } from '../types';
+import { useLanguage } from '../context/LanguageContext';
 
 // Map string names to actual Icon components
 const IconMap: Record<string, any> = {
@@ -72,34 +73,35 @@ const ItineraryItem = ({ day, title, activities, image, isOpen, toggle }: any) =
 const TripDetails: React.FC<TripDetailsProps> = ({ stats, about, highlights, itinerary }) => {
   const [openDay, setOpenDay] = useState<number | null>(0);
   const [isExpanded, setIsExpanded] = useState(false);
+  const { t } = useLanguage();
 
   return (
     <div className="space-y-16">
       {/* Summary Bar */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 p-6 bg-white rounded-2xl shadow-sm border border-[#1E1B4B]/5">
         <div className="flex flex-col justify-between h-full">
-          <span className="text-[10px] uppercase tracking-widest font-black text-[#1E1B4B]/40 block mb-3">Duration</span>
+          <span className="text-[10px] uppercase tracking-widest font-black text-[#1E1B4B]/40 block mb-3">{t('tripDetails.duration')}</span>
           <div className="flex items-center gap-2 font-bold text-[#1E1B4B] text-base">
             <Calendar className="w-4 h-4 text-[#6D28D9] shrink-0" /> 
             <span className="whitespace-nowrap">{stats.duration}</span>
           </div>
         </div>
         <div className="flex flex-col justify-between h-full">
-          <span className="text-[10px] uppercase tracking-widest font-black text-[#1E1B4B]/40 block mb-3">Group Size</span>
+          <span className="text-[10px] uppercase tracking-widest font-black text-[#1E1B4B]/40 block mb-3">{t('tripDetails.groupSize')}</span>
           <div className="flex items-center gap-2 font-bold text-[#1E1B4B] text-base">
             <Users className="w-4 h-4 text-[#6D28D9] shrink-0" /> 
             <span className="whitespace-nowrap">{stats.groupSize}</span>
           </div>
         </div>
         <div className="flex flex-col justify-between h-full">
-          <span className="text-[10px] uppercase tracking-widest font-black text-[#1E1B4B]/40 block mb-3">Accommodation</span>
+          <span className="text-[10px] uppercase tracking-widest font-black text-[#1E1B4B]/40 block mb-3">{t('tripDetails.accommodation')}</span>
           <div className="flex items-center gap-2 font-bold text-[#1E1B4B] text-base">
              <BedDouble className="w-4 h-4 text-[#6D28D9] shrink-0" /> 
              <span className="truncate">{stats.accommodation}</span>
           </div>
         </div>
          <div className="flex flex-col justify-between h-full">
-          <span className="text-[10px] uppercase tracking-widest font-black text-[#1E1B4B]/40 block mb-3">Meals</span>
+          <span className="text-[10px] uppercase tracking-widest font-black text-[#1E1B4B]/40 block mb-3">{t('tripDetails.meals')}</span>
           <div className="flex items-center gap-2 font-bold text-[#1E1B4B] text-base">
              <Utensils className="w-4 h-4 text-[#6D28D9] shrink-0" /> 
              <span className="whitespace-nowrap">{stats.meals}</span>
@@ -109,7 +111,7 @@ const TripDetails: React.FC<TripDetailsProps> = ({ stats, about, highlights, iti
 
       {/* About */}
       <div className="space-y-6">
-        <h3 className="text-3xl font-bold serif text-[#1E1B4B]">About this trip</h3>
+        <h3 className="text-3xl font-bold serif text-[#1E1B4B]">{t('pattayaPage.headers.about')}</h3>
         
         <div className="relative">
           <div 
@@ -128,16 +130,16 @@ const TripDetails: React.FC<TripDetailsProps> = ({ stats, about, highlights, iti
           className="flex items-center gap-2 text-[#6D28D9] font-black uppercase tracking-widest text-xs hover:text-[#1E40AF] transition-colors group"
         >
           {isExpanded ? (
-            <>Read Less <ChevronUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform" /></>
+            <>{t('pattayaPage.headers.readLess')} <ChevronUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform" /></>
           ) : (
-            <>Read More <ChevronDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" /></>
+            <>{t('pattayaPage.headers.readMore')} <ChevronDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" /></>
           )}
         </button>
       </div>
 
       {/* Highlights Grid */}
       <div className="space-y-8">
-        <h3 className="text-3xl font-bold serif text-[#1E1B4B]">Trip Highlights</h3>
+        <h3 className="text-3xl font-bold serif text-[#1E1B4B]">{t('pattayaPage.headers.highlights')}</h3>
         <div className="grid md:grid-cols-2 gap-6">
           {highlights.map((highlight, index) => {
             const IconComponent = IconMap[highlight.iconName] || Star;
@@ -160,7 +162,7 @@ const TripDetails: React.FC<TripDetailsProps> = ({ stats, about, highlights, iti
 
       {/* Itinerary Accordion */}
       <div className="space-y-8">
-        <h3 className="text-3xl font-bold serif text-[#1E1B4B]">What you'll do</h3>
+        <h3 className="text-3xl font-bold serif text-[#1E1B4B]">{t('pattayaPage.headers.itinerary')}</h3>
         <div className="">
           {itinerary.map((day, i) => (
             <ItineraryItem 

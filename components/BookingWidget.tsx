@@ -1,21 +1,19 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { Minus, Plus, Check, Sparkles } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface DateOption {
   date: string;
   seatsLeft: number;
 }
 
-const dates: DateOption[] = [
-  { date: '8 - 14 Feb \'26', seatsLeft: 3 },
-  { date: '22 - 28 Feb \'26', seatsLeft: 7 },
-];
-
 const BookingWidget = () => {
   const [selectedDate, setSelectedDate] = useState<number>(0);
   const [guests, setGuests] = useState(1);
+  const { t } = useLanguage();
 
+  const dates: DateOption[] = t('booking.dates');
   const maxSeats = dates[selectedDate].seatsLeft;
 
   useEffect(() => {
@@ -32,7 +30,7 @@ const BookingWidget = () => {
       <div className="relative z-10">
         <div className="flex flex-col gap-0.5 mb-5">
           <div className="flex items-center gap-2 text-[#6D28D9] font-black text-[9px] uppercase tracking-widest">
-            <Sparkles className="w-3 h-3" /> Best Price Guarantee
+            <Sparkles className="w-3 h-3" /> {t('booking.bestPrice')}
           </div>
           <div className="flex items-baseline gap-2">
             <span className="text-3xl font-bold text-[#1E1B4B] font-sans tracking-tight">₹17,999</span>
@@ -41,7 +39,7 @@ const BookingWidget = () => {
         </div>
 
         <div className="space-y-2 mb-5">
-          <label className="text-[10px] font-black uppercase tracking-widest text-[#1E1B4B]">Select Dates</label>
+          <label className="text-[10px] font-black uppercase tracking-widest text-[#1E1B4B]">{t('booking.selectDates')}</label>
           {dates.map((option, idx) => (
             <button
               key={idx}
@@ -57,7 +55,7 @@ const BookingWidget = () => {
                   {option.date}
                 </div>
                 <div className="text-[9px] text-[#1E1B4B]/50 mt-0.5 font-bold uppercase tracking-wide">
-                  {`${option.seatsLeft} seats left`}
+                  {`${option.seatsLeft} ${t('booking.seatsLeft')}`}
                 </div>
               </div>
               {selectedDate === idx ? (
@@ -72,7 +70,7 @@ const BookingWidget = () => {
         </div>
 
         <div className="flex justify-between items-center py-4 border-t border-[#1E1B4B]/5 mb-4">
-          <span className="font-bold text-[#1E1B4B] text-sm">Guests</span>
+          <span className="font-bold text-[#1E1B4B] text-sm">{t('booking.guests')}</span>
           <div className="flex items-center gap-3 bg-[#F5F3FF] rounded-full p-1 border border-[#1E1B4B]/5">
             <button 
               onClick={() => setGuests(Math.max(1, guests - 1))}
@@ -94,22 +92,22 @@ const BookingWidget = () => {
 
         <div className="space-y-3">
           <div className="flex justify-between items-center text-xs font-medium text-[#1E1B4B]/80 px-1">
-            <span>Total Price ({guests} pax)</span>
+            <span>{t('booking.totalPrice')} ({guests} pax)</span>
             <span className="font-bold text-base">₹{(17999 * guests).toLocaleString()}</span>
           </div>
 
           <button className="w-full bg-gradient-to-r from-[#FA4D3F] to-[#D93426] hover:to-[#B91C1C] text-white font-bold py-3.5 rounded-xl transition-all shadow-xl shadow-[#FA4D3F]/30 hover:shadow-[#FA4D3F]/40 hover:-translate-y-0.5 text-xs uppercase tracking-widest relative overflow-hidden">
-             <span className="relative z-10">Instant Book</span>
+             <span className="relative z-10">{t('booking.instantBook')}</span>
              <div className="absolute inset-0 bg-white/20 translate-y-full hover:translate-y-0 transition-transform duration-300" />
           </button>
         </div>
 
         <div className="flex gap-2 mt-4">
           <button className="flex-1 py-2.5 bg-white border border-[#1E1B4B]/10 text-[#1E1B4B] rounded-lg text-[9px] font-bold uppercase tracking-wider hover:bg-[#F5F3FF] hover:border-[#6D28D9]/30 transition-colors">
-            Enquire
+            {t('booking.enquire')}
           </button>
           <button className="flex-1 py-2.5 bg-white border border-[#1E1B4B]/10 text-[#1E1B4B] rounded-lg text-[9px] font-bold uppercase tracking-wider hover:bg-[#F5F3FF] hover:border-[#6D28D9]/30 transition-colors">
-            WhatsApp
+            {t('booking.whatsapp')}
           </button>
         </div>
       </div>
