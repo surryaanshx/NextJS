@@ -1,10 +1,13 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import Image from 'next/image';
 import { ArrowRight, Lock, Globe } from 'lucide-react';
 
 export default function DestinationsPage() {
+  const [isPattayaLoaded, setIsPattayaLoaded] = useState(false);
+
   return (
     <div className="bg-white min-h-screen relative overflow-hidden">
       <Navbar />
@@ -12,14 +15,13 @@ export default function DestinationsPage() {
       {/* Global Grain Texture Overlay */}
       <div className="fixed inset-0 z-0 opacity-[0.03] pointer-events-none mix-blend-multiply" style={{ backgroundImage: `url("https://www.transparenttextures.com/patterns/noise-lines.png")` }}></div>
 
-      {/* Aurora Ambient Backgrounds - More Vibrant */}
+      {/* Aurora Ambient Backgrounds */}
       <div className="fixed top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-[#6D28D9]/10 to-[#FA4D3F]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none z-0" />
       <div className="fixed top-[40%] left-0 w-[600px] h-[600px] bg-gradient-to-tr from-[#1E40AF]/10 to-[#6D28D9]/5 rounded-full blur-[100px] -translate-x-1/2 pointer-events-none z-0" />
 
-      {/* Adjusted padding top to pt-44 for better spacing */}
       <div className="pt-44 pb-48 px-6 md:px-8 relative z-10">
         <div className="max-w-7xl mx-auto space-y-10">
-          {/* Header - Reduced spacing between elements */}
+          {/* Header */}
           <div className="flex flex-col max-w-2xl">
             <div className="flex items-center gap-2 text-[#6D28D9] font-bold text-xs uppercase tracking-widest animate-fade-in mb-3">
               <Globe className="w-4 h-4" />
@@ -33,16 +35,19 @@ export default function DestinationsPage() {
             </p>
           </div>
 
-          {/* Grid - REMOVED DELAY HERE */}
+          {/* Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 animate-fade-up">
             {/* Pattaya - Active */}
-            <a href="/destinations/pattaya" className="group block relative aspect-[4/5] overflow-hidden rounded-[2rem] cursor-pointer shadow-2xl shadow-[#1E1B4B]/10 hover:shadow-[#6D28D9]/20 hover:-translate-y-2 transition-all duration-500 ring-1 ring-black/5">
+            <a href="/destinations/pattaya" className="group block relative aspect-[4/5] overflow-hidden rounded-[2rem] cursor-pointer shadow-2xl shadow-[#1E1B4B]/10 hover:shadow-[#6D28D9]/20 hover:-translate-y-2 transition-all duration-500 ring-1 ring-black/5 bg-[#F5F3FF]">
               <Image 
                 src="/images/destinations/pattaya-card.jpg" 
                 alt="Pattaya City"
                 fill
                 quality={90}
-                className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                onLoad={() => setIsPattayaLoaded(true)}
+                className={`object-cover transition-all duration-700 ease-out group-hover:scale-110
+                   ${isPattayaLoaded ? 'scale-100 blur-0 opacity-100' : 'scale-110 blur-xl opacity-0'}
+                `}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1E1B4B] via-[#1E1B4B]/20 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none" />

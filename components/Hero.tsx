@@ -1,39 +1,38 @@
 'use client';
 import { Search, ArrowRight } from 'lucide-react';
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { useLanguage } from '../context/LanguageContext';
 
-// 1. Static Import (Simulated path for Next.js optimization)
-// In a real local environment, this allows Next.js to calculate width/height/blur automatically.
-// For now, we keep the string path but remove the delay which is the real killer.
-
 const Hero: React.FC = () => {
   const { t } = useLanguage();
+  const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <section className="min-h-[85vh] pt-40 px-6 md:px-8 flex items-center relative">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-20 items-center relative z-10 w-full">
         
         {/* Visual Content (Right Side on Desktop) */}
-        {/* CHANGED: Removed 'opacity-0', 'animate-slide-right', and 'delay-600' */}
         <div className="lg:col-span-6 relative mt-12 lg:mt-0 order-first lg:order-last group flex justify-center lg:justify-end animate-fade-in">
           {/* Reduced max-w by 1% (500px * 0.99 = 495px) */}
           <div className="relative z-10 w-full max-w-[495px]">
-            <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-[0_40px_100px_-20px_rgba(109,40,217,0.2)] ring-1 ring-white/50 relative">
-               {/* CHANGED: Added quality={90} and removed transition delays on the image itself */}
+            <div className={`aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-[0_40px_100px_-20px_rgba(109,40,217,0.2)] ring-1 ring-white/50 relative bg-[#F5F3FF] transition-all duration-700 ${isLoaded ? 'shadow-2xl' : 'shadow-none'}`}>
                <Image 
                 src="/images/home/hero-main.jpg" 
                 alt="Luxury Thailand scenery"
                 fill
                 priority={true}
                 quality={90}
-                className="object-cover scale-105 group-hover:scale-100 transition-transform duration-[1.5s]"
+                onLoad={() => setIsLoaded(true)}
+                className={`object-cover transition-all duration-1000 ease-out
+                  ${isLoaded ? 'scale-105 blur-0 opacity-100' : 'scale-110 blur-xl opacity-0'}
+                  group-hover:scale-100
+                `}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1E1B4B]/40 to-transparent mix-blend-multiply pointer-events-none" />
               
-              {/* Floating Badge - Kept animation but sped it up */}
+              {/* Floating Badge */}
               <a href="/destinations/pattaya" className="absolute bottom-8 left-8 right-8 bg-white/10 backdrop-blur-xl border border-white/20 p-5 rounded-2xl shadow-2xl animate-fade-up delay-200 transition-all duration-500 hover:bg-white/20 hover:border-white/30 hover:-translate-y-1 hover:shadow-[0_20px_40px_-10px_rgba(255,255,255,0.1)] cursor-pointer group/badge block">
                 <div className="flex items-center justify-between">
                   <div className="flex flex-col">
@@ -53,7 +52,7 @@ const Hero: React.FC = () => {
           </div>
         </div>
 
-        {/* Text Content - Kept animations but synchronized better */}
+        {/* Text Content */}
         <div className="lg:col-span-6 space-y-8 flex flex-col items-start text-left -translate-y-[1%]">
           <div className="space-y-6 w-full">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F5F3FF] border border-[#6D28D9]/10 opacity-0 animate-fade-in">

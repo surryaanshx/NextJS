@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
 import BookingWidget from '../../../components/BookingWidget';
@@ -124,6 +125,12 @@ export default function PattayaPage() {
     }
   ];
 
+  // Image Loading State Management
+  const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
+  const handleImageLoad = (id: string) => {
+    setLoadedImages(prev => ({ ...prev, [id]: true }));
+  };
+
   return (
     <div className="bg-[#FAFAFA] min-h-screen relative">
       <Navbar />
@@ -131,7 +138,7 @@ export default function PattayaPage() {
       {/* Global Grain Texture Overlay */}
       <div className="fixed inset-0 z-0 opacity-[0.03] pointer-events-none mix-blend-multiply" style={{ backgroundImage: `url("https://www.transparenttextures.com/patterns/noise-lines.png")` }}></div>
 
-      {/* Aurora Ambient Backgrounds - More Vibrant */}
+      {/* Aurora Ambient Backgrounds */}
       <div className="fixed top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-[#6D28D9]/10 to-[#FA4D3F]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none z-0" />
       <div className="fixed top-[40%] left-0 w-[600px] h-[600px] bg-gradient-to-tr from-[#1E40AF]/10 to-[#6D28D9]/5 rounded-full blur-[100px] -translate-x-1/2 pointer-events-none z-0" />
 
@@ -175,11 +182,15 @@ export default function PattayaPage() {
          {/* Gallery - Advanced Magazine Layout - 5 Images */}
          <div className="grid grid-cols-1 md:grid-cols-12 grid-rows-2 gap-4 h-auto md:h-[600px] mb-16 rounded-3xl p-3 bg-white shadow-xl shadow-[#1E1B4B]/5 border border-[#1E1B4B]/5">
             {/* 1. Large Main (Left) - 6 cols, 2 rows */}
-            <div className="col-span-1 md:col-span-6 row-span-2 relative rounded-2xl overflow-hidden group min-h-[300px]">
+            <div className="col-span-1 md:col-span-6 row-span-2 relative rounded-2xl overflow-hidden group min-h-[300px] bg-[#F5F3FF]">
               <Image 
                 src="/images/pattaya/gallery/floating-market.jpg" 
                 fill
-                className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.03]"
+                priority
+                onLoad={() => handleImageLoad('img1')}
+                className={`object-cover transition-all duration-1000 ease-out group-hover:scale-[1.03]
+                  ${loadedImages['img1'] ? 'scale-100 blur-0 opacity-100' : 'scale-110 blur-xl opacity-0'}
+                `}
                 alt="Pattaya Floating Market"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
@@ -191,11 +202,14 @@ export default function PattayaPage() {
             </div>
 
             {/* 2. Top Middle - 3 cols */}
-            <div className="col-span-1 md:col-span-3 row-span-1 relative rounded-2xl overflow-hidden group min-h-[200px]">
+            <div className="col-span-1 md:col-span-3 row-span-1 relative rounded-2xl overflow-hidden group min-h-[200px] bg-[#F5F3FF]">
                <Image 
                 src="/images/pattaya/gallery/coral-island.jpg" 
                 fill
-                className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.03]"
+                onLoad={() => handleImageLoad('img2')}
+                className={`object-cover transition-all duration-1000 ease-out group-hover:scale-[1.03]
+                   ${loadedImages['img2'] ? 'scale-100 blur-0 opacity-100' : 'scale-110 blur-xl opacity-0'}
+                `}
                 alt="Coral Island Speedboat"
                 sizes="(max-width: 768px) 100vw, 25vw"
               />
@@ -207,11 +221,14 @@ export default function PattayaPage() {
             </div>
 
             {/* 3. Top Right - 3 cols (Big Buddha) */}
-            <div className="col-span-1 md:col-span-3 row-span-1 relative rounded-2xl overflow-hidden group min-h-[200px]">
+            <div className="col-span-1 md:col-span-3 row-span-1 relative rounded-2xl overflow-hidden group min-h-[200px] bg-[#F5F3FF]">
                <Image 
                 src="/images/pattaya/gallery/big-buddha.jpg" 
                 fill
-                className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.03]"
+                onLoad={() => handleImageLoad('img3')}
+                className={`object-cover transition-all duration-1000 ease-out group-hover:scale-[1.03]
+                   ${loadedImages['img3'] ? 'scale-100 blur-0 opacity-100' : 'scale-110 blur-xl opacity-0'}
+                `}
                 alt="Big Buddha Pattaya"
                 sizes="(max-width: 768px) 100vw, 25vw"
               />
@@ -223,11 +240,14 @@ export default function PattayaPage() {
             </div>
 
             {/* 4. Bottom Middle - 3 cols */}
-            <div className="col-span-1 md:col-span-3 row-span-1 relative rounded-2xl overflow-hidden group min-h-[200px]">
+            <div className="col-span-1 md:col-span-3 row-span-1 relative rounded-2xl overflow-hidden group min-h-[200px] bg-[#F5F3FF]">
                <Image 
                 src="/images/pattaya/gallery/hotel.jpg" 
                 fill
-                className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.03]"
+                onLoad={() => handleImageLoad('img4')}
+                className={`object-cover transition-all duration-1000 ease-out group-hover:scale-[1.03]
+                   ${loadedImages['img4'] ? 'scale-100 blur-0 opacity-100' : 'scale-110 blur-xl opacity-0'}
+                `}
                 alt="Hiso Hotel Pool"
                 sizes="(max-width: 768px) 100vw, 25vw"
               />
@@ -239,11 +259,14 @@ export default function PattayaPage() {
             </div>
 
             {/* 5. Bottom Right - 3 cols */}
-            <div className="col-span-1 md:col-span-3 row-span-1 relative rounded-2xl overflow-hidden group min-h-[200px]">
+            <div className="col-span-1 md:col-span-3 row-span-1 relative rounded-2xl overflow-hidden group min-h-[200px] bg-[#F5F3FF]">
                <Image 
                 src="/images/pattaya/gallery/markets.jpg" 
                 fill
-                className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.03]"
+                onLoad={() => handleImageLoad('img5')}
+                className={`object-cover transition-all duration-1000 ease-out group-hover:scale-[1.03]
+                   ${loadedImages['img5'] ? 'scale-100 blur-0 opacity-100' : 'scale-110 blur-xl opacity-0'}
+                `}
                 alt="Local Markets"
                 sizes="(max-width: 768px) 100vw, 25vw"
               />
