@@ -1,116 +1,109 @@
 'use client';
-import React, { useState } from 'react';
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
-import Image from 'next/image';
-import { ArrowRight, Lock, Globe } from 'lucide-react';
-import { useLanguage } from '../../context/LanguageContext';
+import React, { useState, useEffect } from 'react';
+import Navbar from './Navbar';
+import Hero from './Hero';
+import BrandMarquee from './BrandMarquee';
+import Collections from './Collections';
+import Spotlight from './Spotlight';
+import Footer from './Footer';
+import Testimonials from './Testimonials';
+import { ChevronUp, ArrowRight } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
-export default function DestinationsPage() {
-  const [isPattayaLoaded, setIsPattayaLoaded] = useState(false);
-  const { t, language } = useLanguage();
+export default function HomeClient() {
+  const [showScroll, setShowScroll] = useState(false);
+  const inquiryRef = useScrollReveal();
+  const { language, t } = useLanguage();
+
+  useEffect(() => {
+    const checkScroll = () => {
+      setShowScroll(window.pageYOffset > 400);
+    };
+    window.addEventListener('scroll', checkScroll);
+    return () => window.removeEventListener('scroll', checkScroll);
+  }, []);
+
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
-    <div key={language} className="bg-white min-h-screen relative overflow-hidden animate-fade-in">
-      <Navbar />
-      
+    <div className="min-h-screen bg-white selection:bg-[#6D28D9] selection:text-white relative overflow-x-hidden">
       {/* Global Grain Texture Overlay */}
       <div className="fixed inset-0 z-0 opacity-[0.03] pointer-events-none mix-blend-multiply" style={{ backgroundImage: `url("https://www.transparenttextures.com/patterns/noise-lines.png")` }}></div>
 
-      {/* Aurora Ambient Backgrounds */}
+      {/* Aurora Ambient Backgrounds - More Vibrant */}
       <div className="fixed top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-[#6D28D9]/10 to-[#FA4D3F]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none z-0" />
       <div className="fixed top-[40%] left-0 w-[600px] h-[600px] bg-gradient-to-tr from-[#1E40AF]/10 to-[#6D28D9]/5 rounded-full blur-[100px] -translate-x-1/2 pointer-events-none z-0" />
-
-      <div className="pt-32 md:pt-44 pb-32 md:pb-48 px-6 md:px-8 relative z-10">
-        <div className="max-w-7xl mx-auto space-y-10">
-          {/* Header with Animations */}
-          <div className="flex flex-col max-w-2xl">
-            <div className="flex items-center gap-2 text-[#6D28D9] font-bold text-xs uppercase tracking-widest animate-fade-in mb-3 opacity-0" style={{ animationDelay: '0ms' }}>
-              <Globe className="w-4 h-4" />
-              <span>{t('destinationsPage.worldAwaits')}</span>
-            </div>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tighter text-[#1E1B4B] font-sans animate-fade-up mb-6 opacity-0" style={{ animationDelay: '100ms' }}>
-              {t('destinationsPage.title')} <span className="serif italic text-transparent bg-clip-text bg-gradient-to-r from-[#6D28D9] to-[#1E40AF] pr-2">{t('destinationsPage.titleItalic')}</span>
-            </h1>
-            <p className="text-[#1E1B4B]/60 text-base md:text-lg leading-relaxed animate-fade-up opacity-0" style={{ animationDelay: '200ms' }}>
-              {t('destinationsPage.desc')}
-            </p>
-          </div>
-
-          {/* Grid: Desktop 4 columns (Horizontal), Mobile 1 column (Vertical) */}
-          {/* Layout: Active, Locked, Faded Outline, Empty */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8 animate-fade-up opacity-0" style={{ animationDelay: '400ms' }}>
-            
-            {/* 1. Pattaya - Active */}
-            <a href="/destinations/pattaya" className="group block relative aspect-[4/5] overflow-hidden rounded-[2rem] cursor-pointer shadow-2xl shadow-[#1E1B4B]/10 hover:shadow-[#6D28D9]/20 hover:-translate-y-2 transition-all duration-500 ring-1 ring-black/5 bg-[#F5F3FF]">
-              <Image 
-                src="/images/destinations/pattaya-card.jpg" 
-                alt="Pattaya City"
-                fill
-                quality={90}
-                onLoad={() => setIsPattayaLoaded(true)}
-                className={`object-cover transition-all duration-700 ease-out group-hover:scale-110
-                   ${isPattayaLoaded ? 'scale-100 blur-0 opacity-100' : 'scale-110 blur-xl opacity-0'}
-                `}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1E1B4B] via-[#1E1B4B]/20 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none" />
-              
-              {/* Badge */}
-              <div className="absolute top-6 left-6 bg-white/20 backdrop-blur-md border border-white/20 px-3 py-1 rounded-full text-white text-[10px] font-bold uppercase tracking-widest">
-                {t('destinationsPage.trending')}
-              </div>
-
-              <div className="absolute bottom-0 left-0 p-6 md:p-8 w-full translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center border-b border-white/20 pb-3 mb-3">
-                    <span className="text-white/80 text-[10px] font-black uppercase tracking-[0.2em]">{t('destinationsPage.location')}</span>
-                    <span className="text-white text-xs font-serif italic">{t('destinationsPage.duration')}</span>
-                  </div>
-                  <h2 className="text-3xl serif font-bold text-white leading-none">{t('destinationsPage.pattayaTitle')}</h2>
-                  <div className="flex items-center gap-2 text-white/80 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                    <span>{t('destinationsPage.explore')}</span>
-                    <ArrowRight className="w-3 h-3" />
-                  </div>
-                </div>
-              </div>
-            </a>
-            
-            {/* 2. Locked Card (Fully Visible) */}
-            <div className="group relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-gradient-to-br from-white to-[#F5F3FF] border border-[#1E1B4B]/5 flex flex-col items-center justify-center text-center p-6 hover:shadow-xl transition-all duration-500">
-                 <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]" />
-                 
-                 <div className="relative z-10 w-16 h-16 rounded-2xl bg-white shadow-[0_10px_30px_-10px_rgba(109,40,217,0.2)] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
-                    <Lock className="w-6 h-6 text-[#1E1B4B]/20 group-hover:text-[#6D28D9] transition-colors" />
-                 </div>
-                 
-                 <h3 className="relative z-10 text-[#1E1B4B] font-bold font-serif text-xl mb-2">{t('destinationsPage.secret')}</h3>
-                 <span className="relative z-10 text-[#6D28D9] font-black uppercase tracking-widest text-[10px] bg-[#6D28D9]/5 px-3 py-1 rounded-full">
-                   {t('destinationsPage.comingSoon')}
-                 </span>
-            </div>
-
-            {/* 3. Locked Card (Half Faded Outline) */}
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border-2 border-dashed border-[#1E1B4B]/10 flex flex-col items-center justify-center text-center p-6 opacity-60"
-                 style={{ maskImage: 'linear-gradient(to right, black 20%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to right, black 20%, transparent 100%)' }}>
-                 
-                 <div className="relative z-10 w-16 h-16 rounded-2xl bg-[#F5F3FF]/50 border border-[#1E1B4B]/5 flex items-center justify-center mb-6">
-                    <Lock className="w-6 h-6 text-[#1E1B4B]/20" />
-                 </div>
-                 
-                 <h3 className="relative z-10 text-[#1E1B4B]/40 font-bold font-serif text-xl mb-2">{t('destinationsPage.secret')}</h3>
-            </div>
-            
-            {/* 4. Empty Space */}
-            <div className="hidden md:block">
-              {/* Intentionally left empty to simulate 'more coming' space */}
-            </div>
-            
-          </div>
-        </div>
-      </div>
       
-      <Footer />
+      <div className="relative z-10">
+        <Navbar />
+        
+        <main key={language} className="bg-transparent space-y-16 md:space-y-20 animate-fade-in">
+          <Hero />
+          
+          <BrandMarquee />
+
+          <Collections />
+          
+          {/* Grouped Dark Sections to prevent white gaps from space-y margin */}
+          <div className="space-y-0 !mt-20">
+            <Testimonials />
+            
+            <Spotlight />
+            
+            <section id="inquiry" className="relative py-16 px-6 overflow-hidden">
+              {/* Extended background dimensions and increased scale to prevent skew glitch */}
+              <div className="absolute -inset-10 w-[120%] h-[150%] bg-gradient-to-br from-[#1E1B4B] via-[#4C1D95] to-[#1E1B4B] transform -skew-y-2 origin-center scale-110" />
+              
+              {/* Decorative circles */}
+              <div className="absolute top-0 right-0 w-96 h-96 bg-[#FA4D3F]/20 rounded-full blur-[100px] pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#60A5FA]/20 rounded-full blur-[100px] pointer-events-none" />
+
+              <div ref={inquiryRef} className="reveal max-w-3xl mx-auto text-center space-y-8 relative z-10">
+                <div className="space-y-3">
+                  <h2 className="text-3xl md:text-5xl font-bold serif text-white leading-tight">
+                    {t('inquiry.title')}
+                  </h2>
+                  <p className="text-white/70 text-base md:text-lg max-w-xl mx-auto leading-relaxed font-light">
+                    {t('inquiry.desc')}
+                  </p>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+                  <div className="relative group w-full sm:w-auto">
+                    <input 
+                      type="email" 
+                      placeholder={t('inquiry.placeholder')}
+                      className="w-full sm:w-80 bg-white/10 backdrop-blur-md border border-white/20 px-6 py-4 rounded-xl outline-none focus:border-white/50 transition-all text-white placeholder:text-white/40 font-medium text-sm shadow-xl"
+                    />
+                    <div className="absolute inset-0 rounded-xl bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                  </div>
+                  <button className="w-full sm:w-auto bg-white text-[#1E1B4B] px-8 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-[#F5F3FF] transition-all duration-300 text-[10px] shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                    {t('inquiry.button')} <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+                
+                <p className="text-[9px] uppercase tracking-widest text-white/40 font-bold">
+                  {t('inquiry.limited')}
+                </p>
+              </div>
+            </section>
+          </div>
+        </main>
+
+        <Footer />
+      </div>
+
+      <button 
+        onClick={scrollTop}
+        className={`fixed bottom-6 right-6 z-50 bg-[#1E1B4B] text-white p-3 rounded-full shadow-2xl hover:bg-[#6D28D9] transition-all duration-500 transform-gpu border border-white/10 
+          ${showScroll ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-75 pointer-events-none'}`}
+        aria-label="Scroll to top"
+      >
+        <ChevronUp className="w-5 h-5" />
+      </button>
     </div>
   );
 }
