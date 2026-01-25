@@ -1,6 +1,23 @@
 'use client';
 import React, { useState } from 'react';
-import { Ship, Landmark, Palmtree, Waves, Moon, ShoppingBag, BedDouble, Users, ChevronDown, Utensils, ChevronUp, Calendar } from 'lucide-react';
+import { 
+  Ship, Landmark, Palmtree, Waves, Moon, ShoppingBag, 
+  BedDouble, Users, ChevronDown, Utensils, ChevronUp, Calendar, Star 
+} from 'lucide-react';
+import { TripStats, TripHighlight, ItineraryDay } from '../types';
+
+// Map string names to actual Icon components
+const IconMap: Record<string, any> = {
+  Ship, Landmark, Palmtree, Waves, Moon, ShoppingBag, 
+  BedDouble, Users, Calendar, Utensils
+};
+
+interface TripDetailsProps {
+  stats: TripStats;
+  about: string;
+  highlights: TripHighlight[];
+  itinerary: ItineraryDay[];
+}
 
 const ItineraryItem = ({ day, title, activities, image, isOpen, toggle }: any) => (
   <div className={`transition-all duration-300 border-b border-[#1E1B4B]/5 last:border-0 ${isOpen ? 'bg-white rounded-2xl shadow-sm border-transparent my-4 p-6' : 'py-6 px-6'}`}>
@@ -45,84 +62,9 @@ const ItineraryItem = ({ day, title, activities, image, isOpen, toggle }: any) =
   </div>
 );
 
-const TripDetails = () => {
+const TripDetails: React.FC<TripDetailsProps> = ({ stats, about, highlights, itinerary }) => {
   const [openDay, setOpenDay] = useState<number | null>(0);
   const [isExpanded, setIsExpanded] = useState(false);
-
-  const itinerary = [
-    {
-      day: '01',
-      title: 'Arrival & The Electric Night',
-      image: '/images/pattaya/itinerary/day1-arrival.png',
-      activities: [
-        'Private transfer from Bangkok Airport to Pattaya.',
-        'Check-in at The Hiso Hotel (3 Star) and refreshment.',
-        'Evening excursion to the famous 89 Russian Adult Show.',
-        'Relaxing Honey Massage experience (transfers included).'
-      ]
-    },
-    {
-      day: '02',
-      title: 'Coral Island Expedition',
-      image: '/images/pattaya/itinerary/day2-coral-island.png',
-      activities: [
-        'Morning speedboat voyage to Koh Larn (Coral Island).',
-        'Time for swimming, sunbathing, and beach sports.',
-        'Authentic Indian Buffet Lunch included.',
-        'Return transfer to hotel for leisure evening.'
-      ]
-    },
-    {
-      day: '03',
-      title: 'Wildlife & Waterways',
-      image: '/images/pattaya/itinerary/day3-wildlife.png',
-      activities: [
-        'Visit to the Tiger Park (Transfers included).',
-        'Adrenaline experience at the Gun Shooting range.',
-        'Traditional Rowing Boat tour at the Pattaya Floating Market.'
-      ]
-    },
-    {
-      day: '04',
-      title: 'Leisure & Personal Discovery',
-      image: '/images/pattaya/itinerary/day4-leisure.png',
-      activities: [
-        'Breakfast at The Hiso Hotel.',
-        'Full day free at leisure to explore the city at your own pace.',
-        'Recommended: Visit Walking Street or Central Festival Mall.'
-      ]
-    },
-    {
-      day: '05',
-      title: 'Cultural Icons',
-      image: '/images/pattaya/itinerary/day5-culture.png',
-      activities: [
-        'Spiritual visit to the Big Buddha Temple on the hill.',
-        'Panoramic city views from Pattaya View Point.',
-        'Exclusive visit to the world-renowned Gems Gallery.'
-      ]
-    },
-    {
-      day: '06',
-      title: 'Local Life & Markets',
-      image: '/images/pattaya/itinerary/day6-markets.png',
-      activities: [
-        'Relaxing morning with breakfast at the hotel.',
-        'Day free for optional activities or beach time.',
-        'Evening guided tour of local Thai markets for souvenirs and street food.'
-      ]
-    },
-    {
-      day: '07',
-      title: 'Departure',
-      image: '/images/pattaya/itinerary/day7-departure.png',
-      activities: [
-        'Final breakfast and hotel checkout.',
-        'Private transfer to Bangkok Airport.',
-        'Bon voyage.'
-      ]
-    }
-  ];
 
   return (
     <div className="space-y-16">
@@ -132,28 +74,28 @@ const TripDetails = () => {
           <span className="text-[10px] uppercase tracking-widest font-black text-[#1E1B4B]/40 block mb-3">Duration</span>
           <div className="flex items-center gap-2 font-bold text-[#1E1B4B] text-base">
             <Calendar className="w-4 h-4 text-[#6D28D9] shrink-0" /> 
-            <span className="whitespace-nowrap">6N / 7D</span>
+            <span className="whitespace-nowrap">{stats.duration}</span>
           </div>
         </div>
         <div className="flex flex-col justify-between h-full">
           <span className="text-[10px] uppercase tracking-widest font-black text-[#1E1B4B]/40 block mb-3">Group Size</span>
           <div className="flex items-center gap-2 font-bold text-[#1E1B4B] text-base">
             <Users className="w-4 h-4 text-[#6D28D9] shrink-0" /> 
-            <span className="whitespace-nowrap">12 Pax</span>
+            <span className="whitespace-nowrap">{stats.groupSize}</span>
           </div>
         </div>
         <div className="flex flex-col justify-between h-full">
           <span className="text-[10px] uppercase tracking-widest font-black text-[#1E1B4B]/40 block mb-3">Accommodation</span>
           <div className="flex items-center gap-2 font-bold text-[#1E1B4B] text-base">
              <BedDouble className="w-4 h-4 text-[#6D28D9] shrink-0" /> 
-             <span className="truncate">The Hiso Hotel</span>
+             <span className="truncate">{stats.accommodation}</span>
           </div>
         </div>
          <div className="flex flex-col justify-between h-full">
           <span className="text-[10px] uppercase tracking-widest font-black text-[#1E1B4B]/40 block mb-3">Meals</span>
           <div className="flex items-center gap-2 font-bold text-[#1E1B4B] text-base">
              <Utensils className="w-4 h-4 text-[#6D28D9] shrink-0" /> 
-             <span className="whitespace-nowrap">Breakfast</span>
+             <span className="whitespace-nowrap">{stats.meals}</span>
           </div>
         </div>
       </div>
@@ -170,11 +112,7 @@ const TripDetails = () => {
               WebkitMaskImage: isExpanded ? 'none' : 'linear-gradient(to bottom, black 0%, transparent 100%)'
             }}
           >
-            <p>
-              Experience the vibrant duality of Pattaya in this comprehensive 7-day expedition. From the neon pulse of the city's famous nightlife and shows to the serene turquoise waters of Coral Island, this tour is curated for the traveler who wants it all. You will explore cultural landmarks like the Big Buddha, navigate the traditional Floating Market, and enjoy ample leisure time. 
-              <br /><br />
-              Stay comfortably at The Hiso Hotel with daily breakfast included, and let our local team handle every transfer and ticket.
-            </p>
+            <div dangerouslySetInnerHTML={{ __html: about }} />
           </div>
         </div>
 
@@ -194,50 +132,22 @@ const TripDetails = () => {
       <div className="space-y-8">
         <h3 className="text-3xl font-bold serif text-[#1E1B4B]">Trip Highlights</h3>
         <div className="grid md:grid-cols-2 gap-6">
-          <div className="flex gap-3 items-start p-4 bg-white rounded-2xl shadow-sm hover:shadow-md transition-all border border-[#1E1B4B]/5 group">
-            <div className="w-10 h-10 rounded-xl bg-[#F5F3FF] group-hover:bg-[#6D28D9] transition-colors flex items-center justify-center shrink-0">
-              <Ship className="w-5 h-5 text-[#6D28D9] group-hover:text-white transition-colors" />
-            </div>
-            <div>
-              <h4 className="font-bold text-[#1E1B4B] text-base mb-1">Coral Island Speedboat</h4>
-              <p className="text-[#1E1B4B]/60 text-xs leading-relaxed">
-                Adrenaline-fueled transfer to pristine Koh Larn with Indian lunch included.
-              </p>
-            </div>
-          </div>
-          <div className="flex gap-3 items-start p-4 bg-white rounded-2xl shadow-sm hover:shadow-md transition-all border border-[#1E1B4B]/5 group">
-            <div className="w-10 h-10 rounded-xl bg-[#F5F3FF] group-hover:bg-[#6D28D9] transition-colors flex items-center justify-center shrink-0">
-              <Waves className="w-5 h-5 text-[#6D28D9] group-hover:text-white transition-colors" />
-            </div>
-            <div>
-              <h4 className="font-bold text-[#1E1B4B] text-base mb-1">Floating Market</h4>
-              <p className="text-[#1E1B4B]/60 text-xs leading-relaxed">
-                Traditional rowing boat experience through the cultural waterways.
-              </p>
-            </div>
-          </div>
-          <div className="flex gap-3 items-start p-4 bg-white rounded-2xl shadow-sm hover:shadow-md transition-all border border-[#1E1B4B]/5 group">
-            <div className="w-10 h-10 rounded-xl bg-[#F5F3FF] group-hover:bg-[#6D28D9] transition-colors flex items-center justify-center shrink-0">
-              <Moon className="w-5 h-5 text-[#6D28D9] group-hover:text-white transition-colors" />
-            </div>
-            <div>
-              <h4 className="font-bold text-[#1E1B4B] text-base mb-1">Nightlife & Shows</h4>
-              <p className="text-[#1E1B4B]/60 text-xs leading-relaxed">
-                Includes tickets to the 89 Russian Show and Honey Massage experience.
-              </p>
-            </div>
-          </div>
-          <div className="flex gap-3 items-start p-4 bg-white rounded-2xl shadow-sm hover:shadow-md transition-all border border-[#1E1B4B]/5 group">
-            <div className="w-10 h-10 rounded-xl bg-[#F5F3FF] group-hover:bg-[#6D28D9] transition-colors flex items-center justify-center shrink-0">
-              <Landmark className="w-5 h-5 text-[#6D28D9] group-hover:text-white transition-colors" />
-            </div>
-            <div>
-              <h4 className="font-bold text-[#1E1B4B] text-base mb-1">Cultural Landmarks</h4>
-              <p className="text-[#1E1B4B]/60 text-xs leading-relaxed">
-                Guided visits to Big Buddha, View Point, and Gems Gallery.
-              </p>
-            </div>
-          </div>
+          {highlights.map((highlight, index) => {
+            const IconComponent = IconMap[highlight.iconName] || Star;
+            return (
+              <div key={index} className="flex gap-3 items-start p-4 bg-white rounded-2xl shadow-sm hover:shadow-md transition-all border border-[#1E1B4B]/5 group">
+                <div className="w-10 h-10 rounded-xl bg-[#F5F3FF] group-hover:bg-[#6D28D9] transition-colors flex items-center justify-center shrink-0">
+                  <IconComponent className="w-5 h-5 text-[#6D28D9] group-hover:text-white transition-colors" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-[#1E1B4B] text-base mb-1">{highlight.title}</h4>
+                  <p className="text-[#1E1B4B]/60 text-xs leading-relaxed">
+                    {highlight.description}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
 

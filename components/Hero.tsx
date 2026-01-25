@@ -23,17 +23,17 @@ const Hero: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-[#1E1B4B]/40 to-transparent mix-blend-multiply" />
               
               {/* Floating Badge */}
-              <div className="absolute bottom-8 left-8 right-8 bg-white/10 backdrop-blur-xl border border-white/20 p-5 rounded-2xl shadow-2xl animate-fade-up delay-800 transition-all duration-500 hover:bg-white/20 hover:border-white/30 hover:-translate-y-1 hover:shadow-[0_20px_40px_-10px_rgba(255,255,255,0.1)] cursor-pointer group/badge">
+              <a href="/destinations/pattaya" className="absolute bottom-8 left-8 right-8 bg-white/10 backdrop-blur-xl border border-white/20 p-5 rounded-2xl shadow-2xl animate-fade-up delay-800 transition-all duration-500 hover:bg-white/20 hover:border-white/30 hover:-translate-y-1 hover:shadow-[0_20px_40px_-10px_rgba(255,255,255,0.1)] cursor-pointer group/badge block">
                 <div className="flex items-center justify-between">
                   <div className="flex flex-col">
                     <span className="text-white/60 text-[9px] uppercase tracking-widest font-bold mb-1 group-hover/badge:text-white/80 transition-colors">Featured Expedition</span>
                     <span className="text-white text-lg serif font-bold">Pattaya City</span>
                   </div>
-                  <button className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-[#1E1B4B] group-hover/badge:scale-110 group-hover/badge:bg-[#F5F3FF] transition-all duration-300">
+                  <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-[#1E1B4B] group-hover/badge:scale-110 group-hover/badge:bg-[#F5F3FF] transition-all duration-300">
                     <ArrowRight className="w-4 h-4" />
-                  </button>
+                  </div>
                 </div>
-              </div>
+              </a>
             </div>
 
             {/* Decorative Elements behind image */}
