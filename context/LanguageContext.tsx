@@ -22,11 +22,14 @@ const translations = {
       italic: 'Your way.',
       desc: 'Our itineraries are crafted through local intelligence. We architect meaningful expeditions through minimalist luxury.',
       placeholder: 'Where to wander?',
-      explore: 'Explore'
+      explore: 'Explore',
+      bookingBadge: 'Now Booking Summer 2026',
+      featuredBadge: 'Featured Expedition'
     },
     collections: {
       curated: 'Curated Selections',
-      seasonal: 'The Seasonal Collection',
+      titlePrefix: 'The Seasonal',
+      titleSuffix: 'Collection',
       season: 'AUTUMN / WINTER 2026',
       items: [
         { title: 'Aegean Sanctuaries', tag: 'Coastal' },
@@ -225,6 +228,8 @@ const translations = {
       ]
     },
     spotlight: {
+      titlePrefix: 'Why We',
+      titleSuffix: 'Lead',
       items: [
         {
           title: "The Local Scout",
@@ -270,10 +275,14 @@ const translations = {
       italic: '由你定义。',
       desc: '我们的行程基于当地智慧精心打造。我们通过极简奢华构建充满意义的远征。',
       placeholder: '想去哪里流浪？',
-      explore: '探索'
+      explore: '探索',
+      bookingBadge: '2026年夏季预订开启',
+      featuredBadge: '精选远征'
     },
     collections: {
       curated: '精选推荐',
+      titlePrefix: '季节限定',
+      titleSuffix: '系列',
       seasonal: '季节限定系列',
       season: '2026 秋冬系列',
       items: [
@@ -473,6 +482,8 @@ const translations = {
       ]
     },
     spotlight: {
+      titlePrefix: '我们为何',
+      titleSuffix: '领先',
       items: [
         {
           title: "当地向导",

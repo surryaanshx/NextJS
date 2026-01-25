@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
 import BookingWidget from '../../../components/BookingWidget';
@@ -22,6 +22,25 @@ export default function PattayaPage() {
   const handleImageLoad = (id: string) => {
     setLoadedImages(prev => ({ ...prev, [id]: true }));
   };
+
+  // Mobile Gallery State
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const galleryImages = [
+    { src: "/images/pattaya/gallery/floating-market.jpg", title: t('pattayaPage.gallery.floatingMarket'), tag: t('pattayaPage.gallery.floatingTag'), id: 'img1' },
+    { src: "/images/pattaya/gallery/coral-island.jpg", title: t('pattayaPage.gallery.coralIsland'), tag: t('pattayaPage.gallery.coralTag'), id: 'img2' },
+    { src: "/images/pattaya/gallery/big-buddha.jpg", title: t('pattayaPage.gallery.bigBuddha'), tag: t('pattayaPage.gallery.bigBuddhaTag'), id: 'img3' },
+    { src: "/images/pattaya/gallery/hotel.jpg", title: t('pattayaPage.gallery.hotel'), tag: t('pattayaPage.gallery.hotelTag'), id: 'img4' },
+    { src: "/images/pattaya/gallery/markets.jpg", title: t('pattayaPage.gallery.nightMarket'), tag: t('pattayaPage.gallery.nightTag'), id: 'img5' },
+  ];
+
+  // Auto-advance slider for mobile
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [galleryImages.length]);
 
   return (
     <div className="bg-[#FAFAFA] min-h-screen relative">
@@ -71,101 +90,139 @@ export default function PattayaPage() {
            </div>
          </div>
 
-         {/* Gallery - Advanced Magazine Layout - 5 Images */}
-         <div className="grid grid-cols-1 md:grid-cols-12 grid-rows-none md:grid-rows-2 gap-4 h-auto md:h-[600px] mb-16 rounded-3xl p-3 bg-white shadow-xl shadow-[#1E1B4B]/5 border border-[#1E1B4B]/5 animate-fade-up opacity-0" style={{ animationDelay: '400ms' }}>
+         {/* DESKTOP GALLERY (Visible only on md+) */}
+         <div className="hidden md:grid grid-cols-1 md:grid-cols-12 grid-rows-none md:grid-rows-2 gap-4 h-auto md:h-[600px] mb-16 rounded-3xl p-3 bg-white shadow-xl shadow-[#1E1B4B]/5 border border-[#1E1B4B]/5 animate-fade-up opacity-0" style={{ animationDelay: '400ms' }}>
             {/* 1. Large Main (Left) - 6 cols, 2 rows */}
             <div className="col-span-1 md:col-span-6 row-span-2 relative rounded-2xl overflow-hidden group min-h-[250px] md:min-h-[300px] bg-[#F5F3FF]">
               <Image 
-                src="/images/pattaya/gallery/floating-market.jpg" 
+                src={galleryImages[0].src}
                 fill
                 priority
                 onLoad={() => handleImageLoad('img1')}
                 className={`object-cover transition-all duration-1000 ease-out group-hover:scale-[1.03]
                   ${loadedImages['img1'] ? 'scale-100 blur-0 opacity-100' : 'scale-110 blur-xl opacity-0'}
                 `}
-                alt="Pattaya Floating Market"
+                alt={galleryImages[0].title}
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80 pointer-events-none" />
               <div className="absolute bottom-6 left-6 text-white">
-                 <p className="text-[10px] font-black uppercase tracking-widest mb-1 opacity-80">{t('pattayaPage.gallery.floatingTag')}</p>
-                 <h3 className="text-xl serif font-bold">{t('pattayaPage.gallery.floatingMarket')}</h3>
+                 <p className="text-[10px] font-black uppercase tracking-widest mb-1 opacity-80">{galleryImages[0].tag}</p>
+                 <h3 className="text-xl serif font-bold">{galleryImages[0].title}</h3>
               </div>
             </div>
 
             {/* 2. Top Middle - 3 cols */}
             <div className="col-span-1 md:col-span-3 row-span-1 relative rounded-2xl overflow-hidden group min-h-[200px] bg-[#F5F3FF]">
                <Image 
-                src="/images/pattaya/gallery/coral-island.jpg" 
+                src={galleryImages[1].src}
                 fill
                 onLoad={() => handleImageLoad('img2')}
                 className={`object-cover transition-all duration-1000 ease-out group-hover:scale-[1.03]
                    ${loadedImages['img2'] ? 'scale-100 blur-0 opacity-100' : 'scale-110 blur-xl opacity-0'}
                 `}
-                alt="Coral Island Speedboat"
+                alt={galleryImages[1].title}
                 sizes="(max-width: 768px) 100vw, 25vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80 pointer-events-none" />
               <div className="absolute bottom-6 left-6 text-white">
-                 <p className="text-[10px] font-black uppercase tracking-widest mb-1 opacity-80">{t('pattayaPage.gallery.coralTag')}</p>
-                 <h3 className="text-xl serif font-bold">{t('pattayaPage.gallery.coralIsland')}</h3>
+                 <p className="text-[10px] font-black uppercase tracking-widest mb-1 opacity-80">{galleryImages[1].tag}</p>
+                 <h3 className="text-xl serif font-bold">{galleryImages[1].title}</h3>
               </div>
             </div>
 
             {/* 3. Top Right - 3 cols (Big Buddha) */}
             <div className="col-span-1 md:col-span-3 row-span-1 relative rounded-2xl overflow-hidden group min-h-[200px] bg-[#F5F3FF]">
                <Image 
-                src="/images/pattaya/gallery/big-buddha.jpg" 
+                src={galleryImages[2].src}
                 fill
                 onLoad={() => handleImageLoad('img3')}
                 className={`object-cover transition-all duration-1000 ease-out group-hover:scale-[1.03]
                    ${loadedImages['img3'] ? 'scale-100 blur-0 opacity-100' : 'scale-110 blur-xl opacity-0'}
                 `}
-                alt="Big Buddha Pattaya"
+                alt={galleryImages[2].title}
                 sizes="(max-width: 768px) 100vw, 25vw"
               />
                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80 pointer-events-none" />
                <div className="absolute bottom-6 left-6 text-white">
-                 <p className="text-[10px] font-black uppercase tracking-widest mb-1 opacity-80">{t('pattayaPage.gallery.bigBuddhaTag')}</p>
-                 <h3 className="text-xl serif font-bold">{t('pattayaPage.gallery.bigBuddha')}</h3>
+                 <p className="text-[10px] font-black uppercase tracking-widest mb-1 opacity-80">{galleryImages[2].tag}</p>
+                 <h3 className="text-xl serif font-bold">{galleryImages[2].title}</h3>
               </div>
             </div>
 
             {/* 4. Bottom Middle - 3 cols */}
             <div className="col-span-1 md:col-span-3 row-span-1 relative rounded-2xl overflow-hidden group min-h-[200px] bg-[#F5F3FF]">
                <Image 
-                src="/images/pattaya/gallery/hotel.jpg" 
+                src={galleryImages[3].src}
                 fill
                 onLoad={() => handleImageLoad('img4')}
                 className={`object-cover transition-all duration-1000 ease-out group-hover:scale-[1.03]
                    ${loadedImages['img4'] ? 'scale-100 blur-0 opacity-100' : 'scale-110 blur-xl opacity-0'}
                 `}
-                alt="Hiso Hotel Pool"
+                alt={galleryImages[3].title}
                 sizes="(max-width: 768px) 100vw, 25vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80 pointer-events-none" />
               <div className="absolute bottom-6 left-6 text-white">
-                 <p className="text-[10px] font-black uppercase tracking-widest mb-1 opacity-80">{t('pattayaPage.gallery.hotelTag')}</p>
-                 <h3 className="text-xl serif font-bold">{t('pattayaPage.gallery.hotel')}</h3>
+                 <p className="text-[10px] font-black uppercase tracking-widest mb-1 opacity-80">{galleryImages[3].tag}</p>
+                 <h3 className="text-xl serif font-bold">{galleryImages[3].title}</h3>
               </div>
             </div>
 
             {/* 5. Bottom Right - 3 cols */}
             <div className="col-span-1 md:col-span-3 row-span-1 relative rounded-2xl overflow-hidden group min-h-[200px] bg-[#F5F3FF]">
                <Image 
-                src="/images/pattaya/gallery/markets.jpg" 
+                src={galleryImages[4].src}
                 fill
                 onLoad={() => handleImageLoad('img5')}
                 className={`object-cover transition-all duration-1000 ease-out group-hover:scale-[1.03]
                    ${loadedImages['img5'] ? 'scale-100 blur-0 opacity-100' : 'scale-110 blur-xl opacity-0'}
                 `}
-                alt="Local Markets"
+                alt={galleryImages[4].title}
                 sizes="(max-width: 768px) 100vw, 25vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80 pointer-events-none" />
                <div className="absolute bottom-6 left-6 text-white">
-                 <p className="text-[10px] font-black uppercase tracking-widest mb-1 opacity-80">{t('pattayaPage.gallery.nightTag')}</p>
-                 <h3 className="text-xl serif font-bold">{t('pattayaPage.gallery.nightMarket')}</h3>
+                 <p className="text-[10px] font-black uppercase tracking-widest mb-1 opacity-80">{galleryImages[4].tag}</p>
+                 <h3 className="text-xl serif font-bold">{galleryImages[4].title}</h3>
+              </div>
+            </div>
+         </div>
+
+         {/* MOBILE GALLERY (Slider - Visible only on mobile) */}
+         <div className="md:hidden mb-12 animate-fade-up opacity-0" style={{ animationDelay: '400ms' }}>
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2.5rem] shadow-xl shadow-[#1E1B4B]/10">
+              {galleryImages.map((img, index) => (
+                <div 
+                  key={index}
+                  className={`absolute inset-0 transition-all duration-700 ease-in-out transform ${
+                    index === currentSlide ? 'translate-x-0 opacity-100 z-20' : 
+                    index < currentSlide ? '-translate-x-full opacity-0 z-10' : 'translate-x-full opacity-0 z-10'
+                  }`}
+                >
+                  <Image 
+                    src={img.src} 
+                    fill 
+                    className="object-cover" 
+                    alt={img.title} 
+                    sizes="100vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1E1B4B]/80 via-transparent to-transparent" />
+                  <div className="absolute bottom-8 left-8 text-white">
+                     <p className="text-[10px] font-black uppercase tracking-widest mb-2 opacity-80 bg-white/20 backdrop-blur-md px-2 py-1 rounded w-fit">{img.tag}</p>
+                     <h3 className="text-3xl serif font-bold leading-none">{img.title}</h3>
+                  </div>
+                </div>
+              ))}
+              
+              {/* Progress Indicators */}
+              <div className="absolute top-6 right-6 z-30 flex gap-1.5">
+                {galleryImages.map((_, i) => (
+                  <div 
+                    key={i} 
+                    className={`h-1 rounded-full transition-all duration-500 ${i === currentSlide ? 'w-6 bg-white' : 'w-1.5 bg-white/30'}`} 
+                  />
+                ))}
               </div>
             </div>
          </div>

@@ -31,7 +31,7 @@ const Spotlight: React.FC = () => {
              <Star className="w-3 h-3 fill-current" />
           </div>
           <h2 className="text-3xl md:text-5xl font-bold serif text-[#1E1B4B]">
-            Why We <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-[#6D28D9] to-[#FA4D3F] pr-2">Lead</span>
+            {t('spotlight.titlePrefix')} <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-[#6D28D9] to-[#FA4D3F] pr-2">{t('spotlight.titleSuffix')}</span>
           </h2>
         </div>
 

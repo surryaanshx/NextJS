@@ -33,7 +33,7 @@ const Collections: React.FC = () => {
               <span>{t('collections.curated')}</span>
             </div>
             <h2 className="text-4xl md:text-6xl font-bold serif text-[#1E1B4B]">
-              The Seasonal <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-[#6D28D9] to-[#1E40AF]">Collection</span>
+              {t('collections.titlePrefix')} <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-[#6D28D9] to-[#1E40AF]">{t('collections.titleSuffix')}</span>
             </h2>
           </div>
           

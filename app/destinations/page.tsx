@@ -37,9 +37,10 @@ export default function DestinationsPage() {
             </p>
           </div>
 
-          {/* Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 animate-fade-up opacity-0" style={{ animationDelay: '400ms' }}>
-            {/* Pattaya - Active */}
+          {/* Grid: Desktop 3 columns (Horizontal), Mobile 1 column (Vertical) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 animate-fade-up opacity-0" style={{ animationDelay: '400ms' }}>
+            
+            {/* 1. Pattaya - Active */}
             <a href="/destinations/pattaya" className="group block relative aspect-[4/5] overflow-hidden rounded-[2rem] cursor-pointer shadow-2xl shadow-[#1E1B4B]/10 hover:shadow-[#6D28D9]/20 hover:-translate-y-2 transition-all duration-500 ring-1 ring-black/5 bg-[#F5F3FF]">
               <Image 
                 src="/images/destinations/pattaya-card.jpg" 
@@ -50,7 +51,7 @@ export default function DestinationsPage() {
                 className={`object-cover transition-all duration-700 ease-out group-hover:scale-110
                    ${isPattayaLoaded ? 'scale-100 blur-0 opacity-100' : 'scale-110 blur-xl opacity-0'}
                 `}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1E1B4B] via-[#1E1B4B]/20 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none" />
               
@@ -74,9 +75,8 @@ export default function DestinationsPage() {
               </div>
             </a>
             
-            {/* Coming Soon Cards */}
-            {[1, 2, 3].map((_, i) => (
-              <div key={i} className="group relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-gradient-to-br from-white to-[#F5F3FF] border border-[#1E1B4B]/5 flex flex-col items-center justify-center text-center p-6 hover:shadow-xl transition-all duration-500">
+            {/* 2. Locked Card (Fully Visible) */}
+            <div className="group relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-gradient-to-br from-white to-[#F5F3FF] border border-[#1E1B4B]/5 flex flex-col items-center justify-center text-center p-6 hover:shadow-xl transition-all duration-500">
                  <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]" />
                  
                  <div className="relative z-10 w-16 h-16 rounded-2xl bg-white shadow-[0_10px_30px_-10px_rgba(109,40,217,0.2)] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
@@ -87,8 +87,22 @@ export default function DestinationsPage() {
                  <span className="relative z-10 text-[#6D28D9] font-black uppercase tracking-widest text-[10px] bg-[#6D28D9]/5 px-3 py-1 rounded-full">
                    {t('destinationsPage.comingSoon')}
                  </span>
-              </div>
-            ))}
+            </div>
+
+            {/* 3. Locked Card (Half Faded) */}
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-gradient-to-br from-white to-[#F5F3FF]/50 border border-[#1E1B4B]/5 flex flex-col items-center justify-center text-center p-6 opacity-40 hover:opacity-100 transition-opacity duration-500 grayscale hover:grayscale-0">
+                 <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]" />
+                 
+                 <div className="relative z-10 w-16 h-16 rounded-2xl bg-white/50 shadow-sm flex items-center justify-center mb-6">
+                    <Lock className="w-6 h-6 text-[#1E1B4B]/10" />
+                 </div>
+                 
+                 <h3 className="relative z-10 text-[#1E1B4B]/50 font-bold font-serif text-xl mb-2">{t('destinationsPage.secret')}</h3>
+                 <span className="relative z-10 text-[#1E1B4B]/30 font-black uppercase tracking-widest text-[10px] px-3 py-1 rounded-full">
+                   {t('destinationsPage.comingSoon')}
+                 </span>
+            </div>
+            
           </div>
         </div>
       </div>
