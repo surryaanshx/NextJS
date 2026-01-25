@@ -27,7 +27,7 @@ const translations = {
     collections: {
       curated: 'Curated Selections',
       seasonal: 'The Seasonal Collection',
-      season: 'AUTUMN / WINTER 2025',
+      season: 'AUTUMN / WINTER 2026',
       items: [
         { title: 'Aegean Sanctuaries', tag: 'Coastal' },
         { title: 'Nordic Echoes', tag: 'Wilderness' },
@@ -40,12 +40,12 @@ const translations = {
       next: 'Next',
       reviews: [
         {
-          text: "Boom Boom Thailand transformed the way I see the world. Their local scouts introduced me to a side of Chiang Mai I never knew existed. Simply breathtaking.",
+          text: "Boom Boom Thailand transformed my view. Their scouts showed me a side of Pattaya City I never knew existed.",
           author: "Elena R.",
           role: "Travel Journalist"
         },
         {
-          text: "The attention to detail is unmatched. Every moment of our Phang Nga Bay expedition felt curated yet spontaneous. The definition of quiet luxury.",
+          text: "The attention to detail is unmatched. Every moment of our Pattaya City expedition felt curated yet spontaneous. The definition of quiet luxury.",
           author: "Marcus T.",
           role: "Architect"
         },
@@ -107,7 +107,7 @@ const translations = {
     collections: {
       curated: '精选推荐',
       seasonal: '季节限定系列',
-      season: '2025 秋冬系列',
+      season: '2026 秋冬系列',
       items: [
         { title: '爱琴海圣所', tag: '海岸' },
         { title: '北欧回响', tag: '荒野' },

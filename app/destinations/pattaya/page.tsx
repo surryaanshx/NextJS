@@ -26,9 +26,9 @@ export default function PattayaPage() {
                  <MapPin className="w-3.5 h-3.5" />
                  <span>Thailand</span>
                </div>
-               <h1 className="text-4xl md:text-7xl font-bold serif text-[#1E1B4B] leading-tight">
+               <h1 className="text-4xl md:text-7xl font-bold font-sans text-[#1E1B4B] leading-tight">
                  The Pattaya <br/>
-                 <span className="italic text-[#6D28D9]">Elite Escape</span>
+                 <span className="serif italic text-transparent bg-clip-text bg-gradient-to-r from-[#6D28D9] to-[#1E40AF]">Elite Escape</span>
                </h1>
              </div>
              <div className="hidden md:flex gap-3">

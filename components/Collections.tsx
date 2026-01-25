@@ -24,11 +24,7 @@ const Collections: React.FC = () => {
   }, []);
 
   return (
-    <section id="collections" className="py-12 px-6 md:px-8 relative overflow-hidden">
-      {/* Background Mesh Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#F5F3FF]/50 via-white to-white" />
-      <div className="absolute top-1/4 left-0 w-full h-96 bg-gradient-to-r from-[#6D28D9]/5 via-transparent to-[#1E40AF]/5 blur-3xl" />
-
+    <section id="collections" className="pb-12 pt-2 px-6 md:px-8 relative overflow-hidden scroll-mt-32">
       <div ref={revealRef} className="reveal max-w-7xl mx-auto space-y-12 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-end gap-10">
           <div className="space-y-4 max-w-2xl">
@@ -47,8 +43,8 @@ const Collections: React.FC = () => {
           </div>
         </div>
         
-        {/* Desktop View - Locked Cards */}
-        <div className="hidden md:grid grid-cols-3 gap-8 lg:gap-12">
+        {/* Desktop View - Locked Cards - Reduced container width to max-w-5xl for smaller boxes */}
+        <div className="hidden md:grid grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
           {items.map((item: any, i: number) => (
             <div key={i} className="group cursor-pointer">
               <div className="relative aspect-square overflow-hidden rounded-[2rem] bg-gradient-to-br from-white to-[#F5F3FF] border border-[#1E1B4B]/5 flex flex-col items-center justify-center text-center p-6 hover:shadow-xl transition-all duration-500 shadow-lg shadow-[#1E1B4B]/5 hover:-translate-y-2">
@@ -57,16 +53,16 @@ const Collections: React.FC = () => {
                  <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]" />
                  
                  {/* Lock Icon */}
-                 <div className="relative z-10 w-16 h-16 rounded-2xl bg-white shadow-[0_10px_30px_-10px_rgba(109,40,217,0.1)] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
-                    <Lock className="w-6 h-6 text-[#1E1B4B]/20 group-hover:text-[#6D28D9] transition-colors" />
+                 <div className="relative z-10 w-14 h-14 rounded-2xl bg-white shadow-[0_10px_30px_-10px_rgba(109,40,217,0.1)] flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+                    <Lock className="w-5 h-5 text-[#1E1B4B]/20 group-hover:text-[#6D28D9] transition-colors" />
                  </div>
                  
                  {/* Content */}
                  <span className="relative z-10 inline-block px-2.5 py-0.5 bg-[#1E1B4B]/5 text-[#1E1B4B]/60 text-[9px] font-bold uppercase tracking-widest rounded-full mb-3 border border-[#1E1B4B]/5">
                    {item.tag}
                  </span>
-                 <h3 className="relative z-10 text-[#1E1B4B] font-bold font-serif text-2xl mb-2">{item.title}</h3>
-                 <span className="relative z-10 text-[#6D28D9] font-black uppercase tracking-widest text-[10px] bg-[#6D28D9]/5 px-3 py-1 rounded-full mt-2">
+                 <h3 className="relative z-10 text-[#1E1B4B] font-bold font-serif text-xl mb-2">{item.title}</h3>
+                 <span className="relative z-10 text-[#6D28D9] font-black uppercase tracking-widest text-[9px] bg-[#6D28D9]/5 px-3 py-1 rounded-full mt-2">
                    Coming Soon
                  </span>
               </div>

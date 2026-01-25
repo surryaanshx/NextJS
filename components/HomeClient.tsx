@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import Hero from './Hero';
+import BrandMarquee from './BrandMarquee';
 import Collections from './Collections';
 import Spotlight from './Spotlight';
 import Footer from './Footer';
@@ -42,51 +43,54 @@ export default function HomeClient() {
         <main key={language} className="bg-transparent space-y-16 md:space-y-20">
           <Hero />
           
+          <BrandMarquee />
+
           <Collections />
           
-          {/* Dark Mode Break - Testimonials */}
-          <Testimonials />
-          
-          <Spotlight />
-          
-          {/* Revamped Inquiry Section - High Impact Gradient */}
-          <section id="inquiry" className="relative py-16 px-6 overflow-hidden">
-            {/* Extended background dimensions and increased scale to prevent skew glitch */}
-            <div className="absolute -inset-10 w-[120%] h-[150%] bg-gradient-to-br from-[#1E1B4B] via-[#4C1D95] to-[#1E1B4B] transform -skew-y-2 origin-center scale-110" />
+          {/* Grouped Dark Sections to prevent white gaps from space-y margin */}
+          <div className="space-y-0 !mt-20">
+            <Testimonials />
             
-            {/* Decorative circles */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-[#FA4D3F]/20 rounded-full blur-[100px] pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#60A5FA]/20 rounded-full blur-[100px] pointer-events-none" />
+            <Spotlight />
+            
+            <section id="inquiry" className="relative py-16 px-6 overflow-hidden">
+              {/* Extended background dimensions and increased scale to prevent skew glitch */}
+              <div className="absolute -inset-10 w-[120%] h-[150%] bg-gradient-to-br from-[#1E1B4B] via-[#4C1D95] to-[#1E1B4B] transform -skew-y-2 origin-center scale-110" />
+              
+              {/* Decorative circles */}
+              <div className="absolute top-0 right-0 w-96 h-96 bg-[#FA4D3F]/20 rounded-full blur-[100px] pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#60A5FA]/20 rounded-full blur-[100px] pointer-events-none" />
 
-            <div ref={inquiryRef} className="reveal max-w-3xl mx-auto text-center space-y-8 relative z-10">
-              <div className="space-y-3">
-                <h2 className="text-3xl md:text-5xl font-bold serif text-white leading-tight">
-                  {t('inquiry.title')}
-                </h2>
-                <p className="text-white/70 text-base md:text-lg max-w-xl mx-auto leading-relaxed font-light">
-                  {t('inquiry.desc')}
+              <div ref={inquiryRef} className="reveal max-w-3xl mx-auto text-center space-y-8 relative z-10">
+                <div className="space-y-3">
+                  <h2 className="text-3xl md:text-5xl font-bold serif text-white leading-tight">
+                    {t('inquiry.title')}
+                  </h2>
+                  <p className="text-white/70 text-base md:text-lg max-w-xl mx-auto leading-relaxed font-light">
+                    {t('inquiry.desc')}
+                  </p>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+                  <div className="relative group w-full sm:w-auto">
+                    <input 
+                      type="email" 
+                      placeholder={t('inquiry.placeholder')}
+                      className="w-full sm:w-80 bg-white/10 backdrop-blur-md border border-white/20 px-6 py-4 rounded-xl outline-none focus:border-white/50 transition-all text-white placeholder:text-white/40 font-medium text-sm shadow-xl"
+                    />
+                    <div className="absolute inset-0 rounded-xl bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                  </div>
+                  <button className="w-full sm:w-auto bg-white text-[#1E1B4B] px-8 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-[#F5F3FF] transition-all duration-300 text-[10px] shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                    {t('inquiry.button')} <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+                
+                <p className="text-[9px] uppercase tracking-widest text-white/40 font-bold">
+                  {t('inquiry.limited')}
                 </p>
               </div>
-
-              <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-                <div className="relative group w-full sm:w-auto">
-                  <input 
-                    type="email" 
-                    placeholder={t('inquiry.placeholder')}
-                    className="w-full sm:w-80 bg-white/10 backdrop-blur-md border border-white/20 px-6 py-4 rounded-xl outline-none focus:border-white/50 transition-all text-white placeholder:text-white/40 font-medium text-sm shadow-xl"
-                  />
-                  <div className="absolute inset-0 rounded-xl bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-                </div>
-                <button className="w-full sm:w-auto bg-white text-[#1E1B4B] px-8 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-[#F5F3FF] transition-all duration-300 text-[10px] shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:transform hover:-translate-y-1 flex items-center justify-center gap-2">
-                  {t('inquiry.button')} <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
-              
-              <p className="text-[9px] uppercase tracking-widest text-white/40 font-bold">
-                {t('inquiry.limited')}
-              </p>
-            </div>
-          </section>
+            </section>
+          </div>
         </main>
 
         <Footer />

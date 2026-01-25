@@ -15,15 +15,16 @@ export default function DestinationsPage() {
       <div className="fixed top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-[#6D28D9]/10 to-[#FA4D3F]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none z-0" />
       <div className="fixed top-[40%] left-0 w-[600px] h-[600px] bg-gradient-to-tr from-[#1E40AF]/10 to-[#6D28D9]/5 rounded-full blur-[100px] -translate-x-1/2 pointer-events-none z-0" />
 
-      <div className="pt-52 pb-48 px-6 md:px-8 relative z-10">
-        <div className="max-w-7xl mx-auto space-y-16">
-          {/* Header */}
-          <div className="flex flex-col gap-6 max-w-2xl">
-            <div className="flex items-center gap-2 text-[#6D28D9] font-bold text-xs uppercase tracking-widest animate-fade-in">
+      {/* Adjusted padding top to pt-44 for better spacing */}
+      <div className="pt-44 pb-48 px-6 md:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto space-y-10">
+          {/* Header - Reduced spacing between elements */}
+          <div className="flex flex-col max-w-2xl">
+            <div className="flex items-center gap-2 text-[#6D28D9] font-bold text-xs uppercase tracking-widest animate-fade-in mb-3">
               <Globe className="w-4 h-4" />
               <span>The World Awaits</span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-[#1E1B4B] font-sans animate-fade-up">
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-[#1E1B4B] font-sans animate-fade-up mb-6">
               Curated <span className="serif italic text-transparent bg-clip-text bg-gradient-to-r from-[#6D28D9] to-[#1E40AF] pr-2">Destinations</span>
             </h1>
             <p className="text-[#1E1B4B]/60 text-lg leading-relaxed animate-fade-up delay-200">
