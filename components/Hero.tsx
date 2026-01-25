@@ -17,7 +17,7 @@ const Hero: React.FC = () => {
           <div className="opacity-0 animate-slide-right delay-600 relative z-10 w-full max-w-[495px]">
             <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-[0_40px_100px_-20px_rgba(109,40,217,0.2)] ring-1 ring-white/50 relative">
                <Image 
-                src="/images/home/hero-main.png" 
+                src="/images/home/hero-main.jpg" 
                 alt="Luxury Thailand scenery"
                 fill
                 priority

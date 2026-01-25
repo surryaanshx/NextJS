@@ -52,7 +52,7 @@ export default function PattayaPage() {
     {
       day: '01',
       title: 'Arrival & The Electric Night',
-      image: '/images/pattaya/itinerary/day1.png',
+      image: '/images/pattaya/itinerary/day1.jpg',
       activities: [
         'Pickup from Bangkok Airport to Pattaya.',
         'Check-in at The Hiso Hotel and refreshment.',
@@ -63,7 +63,7 @@ export default function PattayaPage() {
     {
       day: '02',
       title: 'Coral Island Expedition',
-      image: '/images/pattaya/itinerary/day2.png',
+      image: '/images/pattaya/itinerary/day2.jpg',
       activities: [
         'Speedboat tour to Koh Larn (Coral Island).',
         'Time for swimming, sunbathing, and beach sports.',
@@ -74,7 +74,7 @@ export default function PattayaPage() {
     {
       day: '03',
       title: 'Wildlife & Waterways',
-      image: '/images/pattaya/itinerary/day3.png',
+      image: '/images/pattaya/itinerary/day3.jpg',
       activities: [
         'City tour with private transfers',
         'Visit to the Tiger Park (Transfer only).',
@@ -85,7 +85,7 @@ export default function PattayaPage() {
     {
       day: '04',
       title: 'Leisure & Personal Discovery',
-      image: '/images/pattaya/itinerary/day4.png',
+      image: '/images/pattaya/itinerary/day4.jpg',
       activities: [
         'Breakfast at The Hiso Hotel.',
         'Full day free at leisure to explore the city at your own pace.',
@@ -95,7 +95,7 @@ export default function PattayaPage() {
     {
       day: '05',
       title: 'Cultural Icons',
-      image: '/images/pattaya/itinerary/day5.png',
+      image: '/images/pattaya/itinerary/day5.jpg',
       activities: [
         'Spiritual visit to the Big Buddha Temple on the hill.',
         'Panoramic city views from Pattaya View Point.',
@@ -105,7 +105,7 @@ export default function PattayaPage() {
     {
       day: '06',
       title: 'Local Life & Markets',
-      image: '/images/pattaya/itinerary/day6.png',
+      image: '/images/pattaya/itinerary/day6.jpg',
       activities: [
         'Relaxing morning with breakfast at the hotel.',
         'Day free for optional activities or beach time.',
@@ -115,7 +115,7 @@ export default function PattayaPage() {
     {
       day: '07',
       title: 'Departure',
-      image: '/images/pattaya/itinerary/day7.png',
+      image: '/images/pattaya/itinerary/day7.jpg',
       activities: [
         'Final breakfast and hotel checkout.',
         'Private transfer to Bangkok Airport.',
@@ -177,7 +177,7 @@ export default function PattayaPage() {
             {/* 1. Large Main (Left) - 6 cols, 2 rows */}
             <div className="col-span-1 md:col-span-6 row-span-2 relative rounded-2xl overflow-hidden group min-h-[300px]">
               <Image 
-                src="/images/pattaya/gallery/floating-market.png" 
+                src="/images/pattaya/gallery/floating-market.jpg" 
                 fill
                 className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.03]"
                 alt="Pattaya Floating Market"
@@ -193,7 +193,7 @@ export default function PattayaPage() {
             {/* 2. Top Middle - 3 cols */}
             <div className="col-span-1 md:col-span-3 row-span-1 relative rounded-2xl overflow-hidden group min-h-[200px]">
                <Image 
-                src="/images/pattaya/gallery/coral-island.png" 
+                src="/images/pattaya/gallery/coral-island.jpg" 
                 fill
                 className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.03]"
                 alt="Coral Island Speedboat"
@@ -209,7 +209,7 @@ export default function PattayaPage() {
             {/* 3. Top Right - 3 cols (Big Buddha) */}
             <div className="col-span-1 md:col-span-3 row-span-1 relative rounded-2xl overflow-hidden group min-h-[200px]">
                <Image 
-                src="/images/pattaya/gallery/big-buddha.png" 
+                src="/images/pattaya/gallery/big-buddha.jpg" 
                 fill
                 className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.03]"
                 alt="Big Buddha Pattaya"
@@ -225,7 +225,7 @@ export default function PattayaPage() {
             {/* 4. Bottom Middle - 3 cols */}
             <div className="col-span-1 md:col-span-3 row-span-1 relative rounded-2xl overflow-hidden group min-h-[200px]">
                <Image 
-                src="/images/pattaya/gallery/hotel.png" 
+                src="/images/pattaya/gallery/hotel.jpg" 
                 fill
                 className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.03]"
                 alt="Hiso Hotel Pool"
@@ -241,7 +241,7 @@ export default function PattayaPage() {
             {/* 5. Bottom Right - 3 cols */}
             <div className="col-span-1 md:col-span-3 row-span-1 relative rounded-2xl overflow-hidden group min-h-[200px]">
                <Image 
-                src="/images/pattaya/gallery/markets.png" 
+                src="/images/pattaya/gallery/markets.jpg" 
                 fill
                 className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.03]"
                 alt="Local Markets"

@@ -38,7 +38,7 @@ export default function DestinationsPage() {
             {/* Pattaya - Active */}
             <a href="/destinations/pattaya" className="group block relative aspect-[4/5] overflow-hidden rounded-[2rem] cursor-pointer shadow-2xl shadow-[#1E1B4B]/10 hover:shadow-[#6D28D9]/20 hover:-translate-y-2 transition-all duration-500 ring-1 ring-black/5">
               <Image 
-                src="/images/destinations/pattaya-card.png" 
+                src="/images/destinations/pattaya-card.jpg" 
                 alt="Pattaya City"
                 fill
                 className="object-cover transition-transform duration-1000 group-hover:scale-110"

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     siteName: 'Boom Boom Thailand',
     images: [
       {
-        url: '/thailand.png',
+        url: '/thailand.jpg',
         width: 1200,
         height: 630,
         alt: 'Boom Boom Thailand Luxury Travel',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     description: 'Bespoke tours and elite expeditions personally curated by local experts in Thailand.',
     site: '@boomboomthailand',
     creator: '@boomboomthailand',
-    images: ['/thailand.png'],
+    images: ['/thailand.jpg'],
   },
   robots: {
     index: true,
@@ -57,7 +57,7 @@ export default function Page() {
             "@context": "https://schema.org",
             "@type": "TravelAgency",
             "name": "Boom Boom Thailand",
-            "image": "https://boomboomthailand.com/thailand.png",
+            "image": "https://boomboomthailand.com/thailand.jpg",
             "url": "https://boomboomthailand.com",
             "telephone": "989-989-9899",
             "priceRange": "$$$",
