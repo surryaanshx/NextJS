@@ -1,6 +1,7 @@
 'use client';
 import { Search, ArrowRight, MapPin, Play } from 'lucide-react';
 import React from 'react';
+import Image from 'next/image';
 import { useLanguage } from '../context/LanguageContext';
 
 const Hero: React.FC = () => {
@@ -15,12 +16,15 @@ const Hero: React.FC = () => {
           {/* Reduced max-w by 1% (500px * 0.99 = 495px) */}
           <div className="opacity-0 animate-slide-right delay-600 relative z-10 w-full max-w-[495px]">
             <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-[0_40px_100px_-20px_rgba(109,40,217,0.2)] ring-1 ring-white/50 relative">
-               <img 
+               <Image 
                 src="/images/home/hero-main.png" 
-                className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-[1.5s]"
                 alt="Luxury Thailand scenery"
+                fill
+                priority
+                className="object-cover scale-110 group-hover:scale-100 transition-transform duration-[1.5s]"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1E1B4B]/40 to-transparent mix-blend-multiply" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1E1B4B]/40 to-transparent mix-blend-multiply pointer-events-none" />
               
               {/* Floating Badge */}
               <a href="/destinations/pattaya" className="absolute bottom-8 left-8 right-8 bg-white/10 backdrop-blur-xl border border-white/20 p-5 rounded-2xl shadow-2xl animate-fade-up delay-800 transition-all duration-500 hover:bg-white/20 hover:border-white/30 hover:-translate-y-1 hover:shadow-[0_20px_40px_-10px_rgba(255,255,255,0.1)] cursor-pointer group/badge block">

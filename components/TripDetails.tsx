@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { 
   Ship, Landmark, Palmtree, Waves, Moon, ShoppingBag, 
   BedDouble, Users, ChevronDown, Utensils, ChevronUp, Calendar, Star 
@@ -43,7 +44,13 @@ const ItineraryItem = ({ day, title, activities, image, isOpen, toggle }: any) =
       <div className="overflow-hidden">
         <div className="grid md:grid-cols-2 gap-8">
           <div className="relative aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden shadow-md">
-            <img src={image} alt={title} className="w-full h-full object-cover" />
+            <Image 
+              src={image} 
+              alt={title} 
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
           </div>
           <div className="space-y-4 flex flex-col justify-center">
             <ul className="space-y-4 relative">

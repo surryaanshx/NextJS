@@ -3,6 +3,7 @@ import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
 import BookingWidget from '../../../components/BookingWidget';
 import TripDetails from '../../../components/TripDetails';
+import Image from 'next/image';
 import { MapPin, Star, Share2, Heart } from 'lucide-react';
 import { TripStats, TripHighlight, ItineraryDay } from '../../../types';
 
@@ -51,9 +52,9 @@ export default function PattayaPage() {
     {
       day: '01',
       title: 'Arrival & The Electric Night',
-      image: '/images/pattaya/itinerary/day1-arrival.png',
+      image: '/images/pattaya/itinerary/day1.png',
       activities: [
-        'Pickupfrom Bangkok Airport to Pattaya.',
+        'Pickup from Bangkok Airport to Pattaya.',
         'Check-in at The Hiso Hotel and refreshment.',
         'Evening excursion to the famous 89 Russian Adult Show.',
         'Relaxing Honey Massage experience (only transfer included).'
@@ -62,7 +63,7 @@ export default function PattayaPage() {
     {
       day: '02',
       title: 'Coral Island Expedition',
-      image: '/images/pattaya/itinerary/day2-coral-island.png',
+      image: '/images/pattaya/itinerary/day2.png',
       activities: [
         'Speedboat tour to Koh Larn (Coral Island).',
         'Time for swimming, sunbathing, and beach sports.',
@@ -73,7 +74,7 @@ export default function PattayaPage() {
     {
       day: '03',
       title: 'Wildlife & Waterways',
-      image: '/images/pattaya/itinerary/day3-wildlife.png',
+      image: '/images/pattaya/itinerary/day3.png',
       activities: [
         'City tour with private transfers',
         'Visit to the Tiger Park (Transfer only).',
@@ -84,7 +85,7 @@ export default function PattayaPage() {
     {
       day: '04',
       title: 'Leisure & Personal Discovery',
-      image: '/images/pattaya/itinerary/day4-leisure.png',
+      image: '/images/pattaya/itinerary/day4.png',
       activities: [
         'Breakfast at The Hiso Hotel.',
         'Full day free at leisure to explore the city at your own pace.',
@@ -94,7 +95,7 @@ export default function PattayaPage() {
     {
       day: '05',
       title: 'Cultural Icons',
-      image: '/images/pattaya/itinerary/day5-culture.png',
+      image: '/images/pattaya/itinerary/day5.png',
       activities: [
         'Spiritual visit to the Big Buddha Temple on the hill.',
         'Panoramic city views from Pattaya View Point.',
@@ -104,7 +105,7 @@ export default function PattayaPage() {
     {
       day: '06',
       title: 'Local Life & Markets',
-      image: '/images/pattaya/itinerary/day6-markets.png',
+      image: '/images/pattaya/itinerary/day6.png',
       activities: [
         'Relaxing morning with breakfast at the hotel.',
         'Day free for optional activities or beach time.',
@@ -114,7 +115,7 @@ export default function PattayaPage() {
     {
       day: '07',
       title: 'Departure',
-      image: '/images/pattaya/itinerary/day7-departure.png',
+      image: '/images/pattaya/itinerary/day7.png',
       activities: [
         'Final breakfast and hotel checkout.',
         'Private transfer to Bangkok Airport.',
@@ -175,12 +176,14 @@ export default function PattayaPage() {
          <div className="grid grid-cols-1 md:grid-cols-12 grid-rows-2 gap-4 h-auto md:h-[600px] mb-16 rounded-3xl p-3 bg-white shadow-xl shadow-[#1E1B4B]/5 border border-[#1E1B4B]/5">
             {/* 1. Large Main (Left) - 6 cols, 2 rows */}
             <div className="col-span-1 md:col-span-6 row-span-2 relative rounded-2xl overflow-hidden group min-h-[300px]">
-              <img 
+              <Image 
                 src="/images/pattaya/gallery/floating-market.png" 
-                className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.03]"
+                fill
+                className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.03]"
                 alt="Pattaya Floating Market"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80 pointer-events-none" />
               <div className="absolute bottom-6 left-6 text-white">
                  <p className="text-[10px] font-black uppercase tracking-widest mb-1 opacity-80">Cultural</p>
                  <h3 className="text-xl serif font-bold">Floating Markets</h3>
@@ -189,12 +192,14 @@ export default function PattayaPage() {
 
             {/* 2. Top Middle - 3 cols */}
             <div className="col-span-1 md:col-span-3 row-span-1 relative rounded-2xl overflow-hidden group min-h-[200px]">
-               <img 
+               <Image 
                 src="/images/pattaya/gallery/coral-island.png" 
-                className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.03]"
+                fill
+                className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.03]"
                 alt="Coral Island Speedboat"
+                sizes="(max-width: 768px) 100vw, 25vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80 pointer-events-none" />
               <div className="absolute bottom-6 left-6 text-white">
                  <p className="text-[10px] font-black uppercase tracking-widest mb-1 opacity-80">Adventure</p>
                  <h3 className="text-xl serif font-bold">Coral Island</h3>
@@ -203,12 +208,14 @@ export default function PattayaPage() {
 
             {/* 3. Top Right - 3 cols (Big Buddha) */}
             <div className="col-span-1 md:col-span-3 row-span-1 relative rounded-2xl overflow-hidden group min-h-[200px]">
-               <img 
+               <Image 
                 src="/images/pattaya/gallery/big-buddha.png" 
-                className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.03]"
+                fill
+                className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.03]"
                 alt="Big Buddha Pattaya"
+                sizes="(max-width: 768px) 100vw, 25vw"
               />
-               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80" />
+               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80 pointer-events-none" />
                <div className="absolute bottom-6 left-6 text-white">
                  <p className="text-[10px] font-black uppercase tracking-widest mb-1 opacity-80">Spiritual</p>
                  <h3 className="text-xl serif font-bold">Big Buddha</h3>
@@ -217,12 +224,14 @@ export default function PattayaPage() {
 
             {/* 4. Bottom Middle - 3 cols */}
             <div className="col-span-1 md:col-span-3 row-span-1 relative rounded-2xl overflow-hidden group min-h-[200px]">
-               <img 
+               <Image 
                 src="/images/pattaya/gallery/hotel.png" 
-                className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.03]"
+                fill
+                className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.03]"
                 alt="Hiso Hotel Pool"
+                sizes="(max-width: 768px) 100vw, 25vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80 pointer-events-none" />
               <div className="absolute bottom-6 left-6 text-white">
                  <p className="text-[10px] font-black uppercase tracking-widest mb-1 opacity-80">Relaxation</p>
                  <h3 className="text-xl serif font-bold">The Hiso Hotel</h3>
@@ -231,12 +240,14 @@ export default function PattayaPage() {
 
             {/* 5. Bottom Right - 3 cols */}
             <div className="col-span-1 md:col-span-3 row-span-1 relative rounded-2xl overflow-hidden group min-h-[200px]">
-               <img 
+               <Image 
                 src="/images/pattaya/gallery/markets.png" 
-                className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.03]"
+                fill
+                className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.03]"
                 alt="Local Markets"
+                sizes="(max-width: 768px) 100vw, 25vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80 pointer-events-none" />
                <div className="absolute bottom-6 left-6 text-white">
                  <p className="text-[10px] font-black uppercase tracking-widest mb-1 opacity-80">Vibrant</p>
                  <h3 className="text-xl serif font-bold">Night Market</h3>
