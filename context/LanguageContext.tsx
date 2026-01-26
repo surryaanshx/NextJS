@@ -413,17 +413,17 @@ const translations = {
         },
         {
           day: '05',
-          title: '文化标志',
+          title: 'Cultural Icons',
           image: '/images/pattaya/itinerary/day5.jpg',
           activities: [
-            '前往山上的大佛寺进行心灵之旅。',
-            '从芭堤雅观景台欣赏城市全景。',
-            '独家参观世界著名的珠宝画廊。'
+            'Spiritual visit to the Big Buddha Temple on the hill.',
+            'Panoramic city views from Pattaya View Point.',
+            'Exclusive visit to the world-renowned Gems Gallery.'
           ]
         },
         {
           day: '06',
-          title: '当地生活与市场',
+          title: 'Local Life & Markets',
           image: '/images/pattaya/itinerary/day6.jpg',
           activities: [
             '在酒店享用轻松的早餐。',
@@ -528,18 +528,24 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [language, setLanguageState] = useState<Language>('en');
 
+  // Load saved language preference on mount
+  useEffect(() => {
+    const saved = localStorage.getItem('app-language');
+    if (saved) {
+      setLanguageState(saved as Language);
+      document.documentElement.lang = saved;
+    }
+  }, []);
+
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
+    localStorage.setItem('app-language', lang);
     document.documentElement.lang = lang;
   };
 
   const t = (path: string) => {
     return path.split('.').reduce((obj: any, key) => obj?.[key], translations[language]) || path;
   };
-
-  useEffect(() => {
-    document.documentElement.lang = language;
-  }, [language]);
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
