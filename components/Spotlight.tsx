@@ -5,7 +5,7 @@ import { useScrollReveal } from '../hooks/useScrollReveal';
 import { useLanguage } from '../context/LanguageContext';
 
 const Spotlight: React.FC = () => {
-  const revealRef = useScrollReveal();
+  const { ref, isVisible } = useScrollReveal();
   const { t } = useLanguage();
   
   const icons = [Compass, Headset, ShieldCheck];
@@ -21,7 +21,7 @@ const Spotlight: React.FC = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-gradient-to-r from-[#6D28D9]/5 via-[#FA4D3F]/5 to-[#6D28D9]/5 blur-[100px] rounded-full opacity-60" />
       </div>
 
-      <div ref={revealRef} className="reveal max-w-6xl mx-auto relative z-10 space-y-12 group">
+      <div ref={ref} className={`reveal max-w-6xl mx-auto relative z-10 space-y-12 group ${isVisible ? 'is-visible' : ''}`}>
         
         {/* Section Header */}
         <div className="text-center space-y-4">

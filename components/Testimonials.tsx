@@ -6,7 +6,7 @@ import { useLanguage } from '../context/LanguageContext';
 
 const Testimonials: React.FC = () => {
   const [index, setIndex] = useState(0);
-  const revealRef = useScrollReveal();
+  const { ref, isVisible } = useScrollReveal();
   const { t } = useLanguage();
   const reviews = t('testimonials.reviews');
 
@@ -28,7 +28,7 @@ const Testimonials: React.FC = () => {
       </div>
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0F0E2A]/50 pointer-events-none" />
 
-      <div ref={revealRef} className="reveal max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 md:gap-16 items-center relative z-10">
+      <div ref={ref} className={`reveal max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 md:gap-16 items-center relative z-10 ${isVisible ? 'is-visible' : ''}`}>
         
         {/* Left: Heading & Controls */}
         <div className="space-y-6">

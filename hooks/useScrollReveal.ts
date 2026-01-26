@@ -1,46 +1,39 @@
 'use client';
-import { useEffect, useRef, useCallback } from 'react';
-import { useLanguage } from '../context/LanguageContext';
+import { useEffect, useRef, useState } from 'react';
 
 export const useScrollReveal = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const { language } = useLanguage();
+  const [isVisible, setIsVisible] = useState(false);
   
-  const setupObserver = useCallback(() => {
-    if (typeof window === 'undefined') return;
+  useEffect(() => {
+    if (typeof window === 'undefined' || !ref.current) return;
+
+    // Check if element is already in view on mount (e.g. reload at bottom of page)
+    const rect = ref.current.getBoundingClientRect();
+    if (rect.top < window.innerHeight) {
+      setIsVisible(true);
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          // Stop observing once visible to save resources and prevent flickering
-          observer.unobserve(entry.target);
+          setIsVisible(true);
+          // Once visible, we can stop observing
+          if (ref.current) observer.unobserve(ref.current);
         }
       },
       { 
-        // Expand capture zone by 150px at the bottom
-        // This ensures animation starts BEFORE the element enters the viewport
-        rootMargin: '0px 0px 150px 0px', 
+        // Large bottom margin allows elements to prepare before entering viewport
+        // This prevents the "pop-in" glitch on fast scrolls
+        rootMargin: '0px 0px 200px 0px', 
         threshold: 0 
       }
     );
 
-    if (ref.current) {
-      // If element is already visible (e.g. from SSR or previous state), ensure logic is consistent
-      if (ref.current.classList.contains('is-visible')) {
-         // Already visible, do nothing
-      } else {
-         observer.observe(ref.current);
-      }
-    }
+    observer.observe(ref.current);
     
-    return observer;
-  }, [language]);
+    return () => observer.disconnect();
+  }, []);
 
-  useEffect(() => {
-    const observer = setupObserver();
-    return () => observer?.disconnect();
-  }, [setupObserver, language]);
-
-  return ref;
+  return { ref, isVisible };
 };

@@ -13,7 +13,7 @@ import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export default function HomeClient() {
   const [showScroll, setShowScroll] = useState(false);
-  const inquiryRef = useScrollReveal();
+  const { ref: inquiryRef, isVisible: isInquiryVisible } = useScrollReveal();
   const { language, t } = useLanguage();
 
   useEffect(() => {
@@ -61,7 +61,7 @@ export default function HomeClient() {
               <div className="absolute top-0 right-0 w-96 h-96 bg-[#FA4D3F]/20 rounded-full blur-[100px] pointer-events-none" />
               <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#60A5FA]/20 rounded-full blur-[100px] pointer-events-none" />
 
-              <div ref={inquiryRef} className="reveal max-w-3xl mx-auto text-center space-y-8 relative z-10">
+              <div ref={inquiryRef} className={`reveal max-w-3xl mx-auto text-center space-y-8 relative z-10 ${isInquiryVisible ? 'is-visible' : ''}`}>
                 <div className="space-y-3">
                   <h2 className="text-3xl md:text-5xl font-bold serif text-white leading-tight">
                     {t('inquiry.title')}

@@ -6,7 +6,7 @@ import { useLanguage } from '../context/LanguageContext';
 
 const Collections: React.FC = () => {
   const [index, setIndex] = useState(0);
-  const revealRef = useScrollReveal();
+  const { ref, isVisible } = useScrollReveal();
   const { t } = useLanguage();
 
   const items = t('collections.items').map((item: any, i: number) => ({
@@ -25,7 +25,7 @@ const Collections: React.FC = () => {
 
   return (
     <section id="collections" className="pb-12 pt-2 px-6 md:px-8 relative overflow-hidden scroll-mt-32">
-      <div ref={revealRef} className="reveal max-w-7xl mx-auto space-y-12 relative z-10">
+      <div ref={ref} className={`reveal max-w-7xl mx-auto space-y-12 relative z-10 ${isVisible ? 'is-visible' : ''}`}>
         <div className="flex flex-col md:flex-row justify-between items-end gap-10">
           <div className="space-y-4 max-w-2xl">
             <div className="flex items-center gap-2 text-[#6D28D9] font-black text-xs uppercase tracking-widest">
