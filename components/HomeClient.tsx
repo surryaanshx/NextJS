@@ -40,16 +40,23 @@ export default function HomeClient() {
       <div className="relative z-10">
         <Navbar />
         
-        {/* Reduced spacing on mobile from space-y-8 to space-y-4 */}
-        <main key={language} className="bg-transparent space-y-4 md:space-y-20 animate-fade-in">
-          <Hero />
+        {/* Removed space-y-4 to allow manual control of spacing between specific sections */}
+        <main key={language} className="bg-transparent flex flex-col animate-fade-in">
           
-          <BrandMarquee />
+          {/* Hero Section */}
+          <div className="mb-2 md:mb-10">
+            <Hero />
+          </div>
+          
+          {/* Brand Marquee - Close to Hero, but distant from Collections */}
+          <div className="mb-16 md:mb-32">
+            <BrandMarquee />
+          </div>
 
           <Collections />
           
-          {/* Grouped Dark Sections to prevent white gaps from space-y margin */}
-          <div className="space-y-0 !mt-20">
+          {/* Grouped Dark Sections */}
+          <div className="flex flex-col mt-20 md:mt-32">
             <Testimonials />
             
             <Spotlight />

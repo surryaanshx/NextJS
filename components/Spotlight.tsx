@@ -40,8 +40,9 @@ const Spotlight: React.FC = () => {
           {items.map((item: any, i: number) => (
             <div 
               key={i} 
-              style={{ transitionDelay: `${i * 150}ms` }}
-              className="group/card relative p-6 md:p-8 rounded-[2rem] bg-white border border-[#1E1B4B]/5 hover:border-[#6D28D9]/20 transition-all duration-700 overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 opacity-0 translate-y-8 group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0"
+              // Reduced delay from 150ms to 100ms for snappier appearance
+              style={{ transitionDelay: `${i * 100}ms` }}
+              className="group/card relative p-6 md:p-8 rounded-[2rem] bg-white border border-[#1E1B4B]/5 hover:border-[#6D28D9]/20 transition-all duration-500 overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 opacity-0 translate-y-8 group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0"
             >
               {/* Card Hover Gradient */}
               <div className="absolute inset-0 bg-gradient-to-br from-[#F5F3FF] to-white opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />

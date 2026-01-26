@@ -23,10 +23,10 @@ export const useScrollReveal = () => {
         }
       },
       { 
-        // Reduced bottom margin from 200px to 50px.
-        // This ensures the animation triggers just as the element is about to enter or barely enters the screen,
-        // making the animation actually visible to the user while scrolling down.
-        rootMargin: '0px 0px 50px 0px', 
+        // Increased bottom margin from 50px to 100px.
+        // Triggers the animation slightly before the element enters the viewport.
+        // This ensures the element is already fading in when the user scrolls to it, preventing the "abrupt" appearance.
+        rootMargin: '0px 0px 100px 0px', 
         threshold: 0 
       }
     );
