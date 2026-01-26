@@ -29,7 +29,7 @@ const Hero: React.FC = () => {
                 className={`object-cover transition-transform duration-1000 ease-out will-change-transform
                   ${isLoaded ? 'opacity-100 blur-0' : 'opacity-0 blur-xl'}
                   scale-100 group-hover:scale-105
-                  object-[center_30%] md:object-center
+                  object-[center_15%] md:object-center
                 `}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
@@ -48,16 +48,18 @@ const Hero: React.FC = () => {
                 </div>
               </a>
 
-               {/* Floating Badge (Mobile Version) - Centered */}
-               <a href="/destinations/pattaya" className="md:hidden absolute bottom-4 left-1/2 -translate-x-1/2 w-max max-w-[90%] bg-white/15 backdrop-blur-md border border-white/20 pl-4 pr-1.5 py-1.5 rounded-full shadow-lg animate-fade-up delay-200 flex items-center gap-3 active:scale-95 transition-transform ring-1 ring-black/5 whitespace-nowrap">
-                  <div className="flex flex-col items-start justify-center">
-                     <span className="text-white/70 text-[7px] uppercase tracking-widest font-bold leading-none mb-0.5">Featured</span>
-                     <span className="text-white text-xs serif font-bold leading-none">{t('hero.pattayaCity')}</span>
-                  </div>
-                  <div className="w-7 h-7 bg-white rounded-full flex items-center justify-center text-[#1E1B4B] shadow-sm shrink-0">
-                    <ArrowRight className="w-3 h-3" />
-                  </div>
-              </a>
+               {/* Floating Badge (Mobile Version) - Wrapper handles positioning, Inner handles animation */}
+               <div className="md:hidden absolute bottom-4 left-1/2 -translate-x-1/2 z-20">
+                 <a href="/destinations/pattaya" className="block w-max max-w-[85vw] bg-white/15 backdrop-blur-md border border-white/20 pl-4 pr-1.5 py-1.5 rounded-full shadow-lg animate-fade-up delay-200 flex items-center gap-3 active:scale-95 transition-transform ring-1 ring-black/5 whitespace-nowrap">
+                    <div className="flex flex-col items-start justify-center">
+                       <span className="text-white/70 text-[7px] uppercase tracking-widest font-bold leading-none mb-0.5">Featured</span>
+                       <span className="text-white text-xs serif font-bold leading-none">{t('hero.pattayaCity')}</span>
+                    </div>
+                    <div className="w-7 h-7 bg-white rounded-full flex items-center justify-center text-[#1E1B4B] shadow-sm shrink-0">
+                      <ArrowRight className="w-3 h-3" />
+                    </div>
+                 </a>
+               </div>
 
             </div>
 
