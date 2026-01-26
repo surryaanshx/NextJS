@@ -26,8 +26,8 @@ const Collections: React.FC = () => {
   return (
     <section id="collections" className="pb-12 pt-2 px-6 md:px-8 relative overflow-hidden scroll-mt-32">
       <div ref={ref} className={`reveal max-w-7xl mx-auto space-y-12 relative z-10 ${isVisible ? 'is-visible' : ''}`}>
-        <div className="flex flex-col md:flex-row justify-between items-end gap-10">
-          <div className="space-y-4 max-w-2xl">
+        <div className="flex flex-col md:flex-row justify-between items-end gap-8 md:gap-10">
+          <div className="space-y-4 max-w-2xl w-full md:w-auto">
             <div className="flex items-center gap-2 text-[#6D28D9] font-black text-xs uppercase tracking-widest">
               <Sparkles className="w-4 h-4" />
               <span>{t('collections.curated')}</span>
@@ -37,9 +37,11 @@ const Collections: React.FC = () => {
             </h2>
           </div>
           
-          <div className="flex items-center gap-6">
-             <div className="hidden md:block h-px w-24 bg-[#1E1B4B]/10" />
-             <p className="text-xs uppercase tracking-[0.2em] font-bold text-[#1E1B4B]/40">{t('collections.season')}</p>
+          {/* Season Text - Centered with double lines on mobile, Left-aligned with single line on desktop */}
+          <div className="w-full md:w-auto flex items-center justify-center md:justify-start gap-4 md:gap-6">
+             <div className="h-px w-16 md:w-24 bg-[#1E1B4B]/10" />
+             <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold text-[#1E1B4B]/40 whitespace-nowrap">{t('collections.season')}</p>
+             <div className="h-px w-16 bg-[#1E1B4B]/10 md:hidden" />
           </div>
         </div>
         

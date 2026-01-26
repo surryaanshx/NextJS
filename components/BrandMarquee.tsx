@@ -8,7 +8,8 @@ const BrandMarquee = () => {
   ];
 
   return (
-    <div className="relative w-full py-8 md:py-12 overflow-hidden" style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}>
+    // Reduced py-8 to py-4 on mobile
+    <div className="relative w-full py-4 md:py-12 overflow-hidden" style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}>
       {/* Thin Lines */}
       <div className="absolute top-1/2 left-0 right-0 h-px bg-[#1E1B4B]/5 -translate-y-6" />
       <div className="absolute top-1/2 left-0 right-0 h-px bg-[#1E1B4B]/5 translate-y-6" />
