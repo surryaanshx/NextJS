@@ -22,47 +22,49 @@ interface TripDetailsProps {
 }
 
 const ItineraryItem = ({ day, title, activities, image, isOpen, toggle }: any) => (
-  <div className={`transition-all duration-300 border-b border-[#1E1B4B]/5 last:border-0 ${isOpen ? 'bg-white rounded-2xl shadow-sm border-transparent my-4 p-6' : 'py-6 px-6'}`}>
+  <div className={`transition-all duration-300 bg-white rounded-2xl border border-[#1E1B4B]/5 overflow-hidden ${isOpen ? 'shadow-md' : 'shadow-sm'}`}>
     <button 
       onClick={toggle}
-      className={`w-full flex items-center justify-between group text-left transition-all duration-300`}
+      className="w-full flex items-center justify-between group text-left p-5 md:p-6"
     >
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-4 md:gap-6">
         <div className={`flex flex-col items-center justify-center w-12 h-14 rounded-xl border transition-all duration-300 ${isOpen ? 'bg-[#6D28D9] border-[#6D28D9] text-white' : 'bg-white border-[#1E1B4B]/10 text-[#10B981]'}`}>
           <span className="text-[9px] font-black uppercase tracking-widest opacity-60">Day</span>
           <span className="text-xl font-bold font-serif leading-none">{day}</span>
         </div>
-        <h4 className={`text-xl serif font-bold transition-colors ${isOpen ? 'text-[#6D28D9]' : 'text-[#1E1B4B] group-hover:text-[#6D28D9]'}`}>
+        <h4 className={`text-lg md:text-xl serif font-bold transition-colors ${isOpen ? 'text-[#6D28D9]' : 'text-[#1E1B4B] group-hover:text-[#6D28D9]'}`}>
           {title}
         </h4>
       </div>
-      <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${isOpen ? 'bg-[#F5F3FF] text-[#6D28D9] rotate-180' : 'bg-transparent text-[#1E1B4B]/30 group-hover:bg-[#F5F3FF] group-hover:text-[#6D28D9]'}`}>
+      <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 shrink-0 ${isOpen ? 'bg-[#F5F3FF] text-[#6D28D9] rotate-180' : 'bg-transparent text-[#1E1B4B]/30 group-hover:bg-[#F5F3FF] group-hover:text-[#6D28D9]'}`}>
         <ChevronDown className="w-5 h-5" />
       </div>
     </button>
     
-    <div className={`grid transition-all duration-500 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100 mt-6' : 'grid-rows-[0fr] opacity-0'}`}>
+    <div className={`grid transition-all duration-500 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
       <div className="overflow-hidden">
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="relative aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden shadow-md">
-            <Image 
-              src={image} 
-              alt={title} 
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </div>
-          <div className="space-y-4 flex flex-col justify-center">
-            <ul className="space-y-4 relative">
-              <div className="absolute left-[5px] top-2 bottom-2 w-px bg-[#1E1B4B]/10" />
-              {activities.map((act: string, i: number) => (
-                <li key={i} className="flex gap-4 items-start text-[#1E1B4B]/70 text-sm font-medium leading-relaxed relative">
-                  <div className="w-2.5 h-2.5 rounded-full bg-white border-2 border-[#6D28D9] mt-1.5 shrink-0 relative z-10" />
-                  {act}
-                </li>
-              ))}
-            </ul>
+        <div className="p-5 md:p-6 pt-0">
+           <div className="grid md:grid-cols-2 gap-6 md:gap-8 pt-2 border-t border-[#1E1B4B]/5 mt-2">
+            <div className="relative aspect-video md:aspect-[4/3] rounded-xl overflow-hidden shadow-md mt-4 md:mt-0">
+              <Image 
+                src={image} 
+                alt={title} 
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div className="space-y-4 flex flex-col justify-center">
+              <ul className="space-y-4 relative">
+                <div className="absolute left-[5px] top-2 bottom-2 w-px bg-[#1E1B4B]/10" />
+                {activities.map((act: string, i: number) => (
+                  <li key={i} className="flex gap-4 items-start text-[#1E1B4B]/70 text-sm font-medium leading-relaxed relative">
+                    <div className="w-2.5 h-2.5 rounded-full bg-white border-2 border-[#6D28D9] mt-1.5 shrink-0 relative z-10" />
+                    {act}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -160,10 +162,10 @@ const TripDetails: React.FC<TripDetailsProps> = ({ stats, about, highlights, iti
         </div>
       </div>
 
-      {/* Itinerary Accordion */}
+      {/* Itinerary Accordion - Now using space-y-4 for consistent card layout */}
       <div className="space-y-8">
         <h3 className="text-3xl font-bold serif text-[#1E1B4B]">{t('pattayaPage.headers.itinerary')}</h3>
-        <div className="">
+        <div className="space-y-4">
           {itinerary.map((day, i) => (
             <ItineraryItem 
               key={i} 

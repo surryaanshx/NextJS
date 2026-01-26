@@ -40,7 +40,8 @@ export default function HomeClient() {
       <div className="relative z-10">
         <Navbar />
         
-        <main key={language} className="bg-transparent space-y-16 md:space-y-20 animate-fade-in">
+        {/* Reduced spacing on mobile from space-y-16 to space-y-8 to bring marquee closer to hero */}
+        <main key={language} className="bg-transparent space-y-8 md:space-y-20 animate-fade-in">
           <Hero />
           
           <BrandMarquee />

@@ -23,9 +23,10 @@ export const useScrollReveal = () => {
         }
       },
       { 
-        // Large bottom margin allows elements to prepare before entering viewport
-        // This prevents the "pop-in" glitch on fast scrolls
-        rootMargin: '0px 0px 200px 0px', 
+        // Reduced bottom margin from 200px to 50px.
+        // This ensures the animation triggers just as the element is about to enter or barely enters the screen,
+        // making the animation actually visible to the user while scrolling down.
+        rootMargin: '0px 0px 50px 0px', 
         threshold: 0 
       }
     );

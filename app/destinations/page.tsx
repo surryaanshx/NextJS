@@ -65,7 +65,8 @@ export default function DestinationsPage() {
                 <div className="space-y-3">
                   <div className="flex justify-between items-center border-b border-white/20 pb-3 mb-3">
                     <span className="text-white/80 text-[10px] font-black uppercase tracking-[0.2em]">{t('destinationsPage.location')}</span>
-                    <span className="text-white text-xs font-serif italic">{t('destinationsPage.duration')}</span>
+                    {/* UPDATED FONT HERE */}
+                    <span className="text-white text-xs font-sans font-bold">{t('destinationsPage.duration')}</span>
                   </div>
                   <h2 className="text-3xl serif font-bold text-white leading-none">{t('destinationsPage.pattayaTitle')}</h2>
                   <div className="flex items-center gap-2 text-white/80 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
