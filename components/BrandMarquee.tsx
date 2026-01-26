@@ -8,12 +8,10 @@ const BrandMarquee = () => {
   ];
 
   return (
-    // Reduced py-8 to py-4 on mobile
-    <div className="relative w-full py-4 md:py-12 overflow-hidden" style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}>
-      {/* Thin Lines */}
-      <div className="absolute top-1/2 left-0 right-0 h-px bg-[#1E1B4B]/5 -translate-y-6" />
-      <div className="absolute top-1/2 left-0 right-0 h-px bg-[#1E1B4B]/5 translate-y-6" />
-
+    // Replaced absolute lines with border-y to ensure visibility on all screen sizes
+    // Adjusted py-5 to ensure content isn't too tight against borders
+    <div className="relative w-full py-5 md:py-12 overflow-hidden border-y border-[#1E1B4B]/5" style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}>
+      
       <div className="flex whitespace-nowrap">
         <div className="animate-marquee flex gap-16 md:gap-32 items-center">
           {words.map((word, i) => (

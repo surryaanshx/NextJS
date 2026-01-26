@@ -44,7 +44,7 @@ export default function HomeClient() {
         <main key={language} className="bg-transparent flex flex-col animate-fade-in">
           
           {/* Hero Section */}
-          <div className="mb-2 md:mb-10">
+          <div className="mb-0 md:mb-10">
             <Hero />
           </div>
           

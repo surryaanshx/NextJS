@@ -15,16 +15,17 @@ const Spotlight: React.FC = () => {
   }));
 
   return (
+    // Removed 'reveal' class from section to ensure background renders immediately
     <section className="py-20 px-6 md:px-8 relative overflow-hidden bg-white/50 border-t border-[#1E1B4B]/5">
-      {/* Background Decor */}
+      {/* Background Decor - Renders immediately */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-gradient-to-r from-[#6D28D9]/5 via-[#FA4D3F]/5 to-[#6D28D9]/5 blur-[100px] rounded-full opacity-60" />
       </div>
 
-      <div ref={ref} className={`reveal max-w-6xl mx-auto relative z-10 space-y-12 group ${isVisible ? 'is-visible' : ''}`}>
+      <div ref={ref} className="max-w-6xl mx-auto relative z-10 space-y-12">
         
-        {/* Section Header */}
-        <div className="text-center space-y-4">
+        {/* Section Header - Fades in */}
+        <div className={`text-center space-y-4 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="flex items-center justify-center gap-2 text-[#6D28D9] font-black text-[10px] uppercase tracking-[0.3em]">
              <Star className="w-3 h-3 fill-current" />
              <span>The Gold Standard</span>
@@ -35,20 +36,19 @@ const Spotlight: React.FC = () => {
           </h2>
         </div>
 
-        {/* Cards Grid - Reduced size and padding */}
+        {/* Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {items.map((item: any, i: number) => (
             <div 
               key={i} 
-              // Reduced delay from 150ms to 100ms for snappier appearance
               style={{ transitionDelay: `${i * 100}ms` }}
-              className="group/card relative p-6 md:p-8 rounded-[2rem] bg-white border border-[#1E1B4B]/5 hover:border-[#6D28D9]/20 transition-all duration-500 overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 opacity-0 translate-y-8 group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0"
+              className={`group/card relative p-6 md:p-8 rounded-[2rem] bg-white border border-[#1E1B4B]/5 hover:border-[#6D28D9]/20 transition-all duration-700 ease-out overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 will-change-transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
             >
               {/* Card Hover Gradient */}
               <div className="absolute inset-0 bg-gradient-to-br from-[#F5F3FF] to-white opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
               
               <div className="relative z-10 flex flex-col items-center md:items-start text-center md:text-left h-full">
-                {/* Icon Container - Smaller, removed rotation */}
+                {/* Icon Container */}
                 <div className="mb-6 relative">
                    <div className="w-14 h-14 rounded-2xl bg-[#F5F3FF] border border-[#6D28D9]/10 flex items-center justify-center group-hover/card:scale-110 transition-transform duration-500 shadow-sm group-hover/card:bg-[#6D28D9] group-hover/card:text-white">
                       <item.icon className="w-6 h-6 text-[#6D28D9] group-hover/card:text-white transition-colors" />
