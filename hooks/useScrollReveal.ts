@@ -12,8 +12,8 @@ export const useScrollReveal = () => {
         if (!ref.current) return;
         const rect = ref.current.getBoundingClientRect();
         // Check if element is in view or close to it (matching the rootMargin buffer)
-        // Adding 300px buffer to ensure it triggers even if slightly below fold or user scrolls fast
-        if (rect.top < window.innerHeight + 300) {
+        // Buffer increased to 1200px for aggressive pre-loading on mobile
+        if (rect.top < window.innerHeight + 1200) {
           setIsVisible(true);
         }
     };
@@ -33,9 +33,9 @@ export const useScrollReveal = () => {
         }
       },
       { 
-        // Increased margin to 300px. This triggers the animation well before the element 
-        // enters the viewport on mobile, preventing the "blank space then snap" issue.
-        rootMargin: '0px 0px 300px 0px', 
+        // Huge margin (1200px bottom) triggers reveal roughly 1.5-2 screens ahead.
+        // Top margin (200px) ensures reverse scrolling is also buffered.
+        rootMargin: '200px 0px 1200px 0px', 
         threshold: 0 
       }
     );

@@ -36,7 +36,9 @@ body {
 .reveal {
   opacity: 0;
   transform: translateY(30px);
-  /* Removed will-change to prevent mobile rendering glitches/flickering */
+  /* Added will-change to force layer promotion, helping with "blank" painting issues on mobile */
+  will-change: opacity, transform;
+  backface-visibility: hidden;
   transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 

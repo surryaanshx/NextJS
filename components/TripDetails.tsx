@@ -52,6 +52,8 @@ const ItineraryItem = ({ day, title, activities, image, isOpen, toggle }: any) =
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                loading="eager"
+                priority={true}
               />
             </div>
             <div className="space-y-4 flex flex-col justify-center">
