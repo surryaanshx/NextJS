@@ -2,11 +2,14 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Phone, Mail, Instagram, Twitter, Facebook, Menu, X } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { usePathname, useRouter } from 'next/navigation';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +18,24 @@ const Navbar: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // Only intercept if we are linking to a hash on the homepage
+    if (href.includes('#') && (pathname === '/' || pathname === '')) {
+      e.preventDefault();
+      const targetId = href.split('#')[1];
+      const element = document.getElementById(targetId);
+      
+      if (element) {
+        setIsMenuOpen(false);
+        // Immediate scroll trigger
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    } else {
+       // Allow default navigation for other pages
+       setIsMenuOpen(false);
+    }
+  };
 
   const navLinks = [
     { name: t('nav.collections'), href: '/#collections' },
@@ -78,7 +99,12 @@ const Navbar: React.FC = () => {
           {/* Desktop Navigation */}
           <div className={`hidden md:flex pointer-events-auto items-center gap-8 lg:gap-10 bg-white/80 backdrop-blur-xl shadow-[0_10px_40px_rgba(109,40,217,0.1)] border border-[#1E1B4B]/10 px-8 py-4 rounded-full transform transition-all hover:scale-[1.02] ${isScrolled ? 'shadow-md' : 'shadow-xl'}`}>
             {navLinks.map(item => (
-              <a key={item.name} href={item.href} className="text-[10px] lg:text-xs uppercase tracking-widest font-bold hover:text-[#6D28D9] transition-colors text-[#1E1B4B]">
+              <a 
+                key={item.name} 
+                href={item.href} 
+                onClick={(e) => handleNavigation(e, item.href)}
+                className="text-[10px] lg:text-xs uppercase tracking-widest font-bold hover:text-[#6D28D9] transition-colors text-[#1E1B4B]"
+              >
                 {item.name}
               </a>
             ))}
@@ -124,7 +150,7 @@ const Navbar: React.FC = () => {
             <a 
               key={link.name} 
               href={link.href} 
-              onClick={() => setIsMenuOpen(false)}
+              onClick={(e) => handleNavigation(e, link.href)}
               className={`serif text-4xl font-bold text-white hover:text-[#6D28D9] transition-colors transition-all duration-500 ${isMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}
               style={{ transitionDelay: `${(i+1)*100}ms` }}
             >

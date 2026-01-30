@@ -117,7 +117,8 @@ const TripDetails: React.FC<TripDetailsProps> = ({ stats, about, highlights, iti
         
         <div className="relative">
           <div 
-            className={`text-[#1E1B4B]/70 leading-relaxed text-sm md:text-base font-medium transition-all duration-700 ease-in-out overflow-hidden ${isExpanded ? 'max-h-[1000px]' : 'max-h-[80px]'}`}
+            // Reduced max-height to 500px and duration to 500ms to match actual content size better, reducing lag on collapse.
+            className={`text-[#1E1B4B]/70 leading-relaxed text-sm md:text-base font-medium transition-all duration-500 ease-in-out overflow-hidden ${isExpanded ? 'max-h-[500px]' : 'max-h-[80px]'}`}
             style={{ 
               maskImage: isExpanded ? 'none' : 'linear-gradient(to bottom, black 0%, transparent 100%)',
               WebkitMaskImage: isExpanded ? 'none' : 'linear-gradient(to bottom, black 0%, transparent 100%)'

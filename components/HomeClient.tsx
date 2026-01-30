@@ -69,8 +69,8 @@ export default function HomeClient() {
               <div className="absolute top-0 right-0 w-96 h-96 bg-[#FA4D3F]/20 rounded-full blur-[100px] pointer-events-none" />
               <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#60A5FA]/20 rounded-full blur-[100px] pointer-events-none" />
 
-              <div ref={inquiryRef} className={`reveal max-w-3xl mx-auto text-center space-y-8 relative z-10 ${isInquiryVisible ? 'is-visible' : ''}`}>
-                <div className="space-y-3">
+              <div ref={inquiryRef} className="max-w-3xl mx-auto text-center space-y-8 relative z-10">
+                <div className={`space-y-3 transition-all duration-700 ease-out ${isInquiryVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <h2 className="text-3xl md:text-5xl font-bold serif text-white leading-tight">
                     {t('inquiry.title')}
                   </h2>
@@ -79,7 +79,7 @@ export default function HomeClient() {
                   </p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+                <div className={`flex flex-col sm:flex-row gap-3 justify-center items-center transition-all duration-700 delay-100 ease-out ${isInquiryVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <div className="relative group w-full sm:w-auto">
                     <input 
                       type="email" 
@@ -93,7 +93,7 @@ export default function HomeClient() {
                   </button>
                 </div>
                 
-                <p className="text-[9px] uppercase tracking-widest text-white/40 font-bold">
+                <p className={`text-[9px] uppercase tracking-widest text-white/40 font-bold transition-all duration-700 delay-200 ease-out ${isInquiryVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   {t('inquiry.limited')}
                 </p>
               </div>

@@ -10,8 +10,8 @@ const Hero: React.FC = () => {
 
   return (
     // Changed min-h-[100dvh] to min-h-screen (100vh) to stabilize mobile layout during scroll
-    // Reduced top padding to pt-12 (was pt-14) on mobile to shift content upwards by another ~1%
-    <section className="min-h-screen md:min-h-[85vh] pt-12 md:pt-40 px-6 md:px-8 flex items-center relative">
+    // Reduced top padding to pt-8 (was pt-10) on mobile to shift content upwards by another ~1%
+    <section className="min-h-screen md:min-h-[85vh] pt-8 md:pt-40 px-6 md:px-8 flex items-center relative">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-8 lg:gap-20 items-center relative z-10 w-full">
         
         {/* Visual Content (Right Side on Desktop, Top on Mobile) */}
