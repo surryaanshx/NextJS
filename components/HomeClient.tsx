@@ -40,8 +40,8 @@ export default function HomeClient() {
       <div className="relative z-10">
         <Navbar />
         
-        {/* Removed space-y-4 to allow manual control of spacing between specific sections */}
-        <main key={language} className="bg-transparent flex flex-col animate-fade-in">
+        {/* Removed key={language} to prevent DOM destruction on language switch. Text updates naturally via React. */}
+        <main className="bg-transparent flex flex-col animate-fade-in">
           
           {/* Hero Section */}
           <div className="mb-0 md:mb-10">

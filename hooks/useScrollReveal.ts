@@ -12,8 +12,8 @@ export const useScrollReveal = () => {
         if (!ref.current) return;
         const rect = ref.current.getBoundingClientRect();
         // Check if element is in view or close to it (matching the rootMargin buffer)
-        // Buffer increased to 1200px for aggressive pre-loading on mobile
-        if (rect.top < window.innerHeight + 1200) {
+        // Buffer set to 600px (roughly 1 viewport height) for optimal mobile loading
+        if (rect.top < window.innerHeight + 600) {
           setIsVisible(true);
         }
     };
@@ -33,9 +33,8 @@ export const useScrollReveal = () => {
         }
       },
       { 
-        // Huge margin (1200px bottom) triggers reveal roughly 1.5-2 screens ahead.
-        // Top margin (200px) ensures reverse scrolling is also buffered.
-        rootMargin: '200px 0px 1200px 0px', 
+        // 600px margin is safer for mobile rendering engines than 1200px
+        rootMargin: '100px 0px 600px 0px', 
         threshold: 0 
       }
     );

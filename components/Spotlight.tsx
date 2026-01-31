@@ -22,10 +22,11 @@ const Spotlight: React.FC = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-gradient-to-r from-[#6D28D9]/5 via-[#FA4D3F]/5 to-[#6D28D9]/5 blur-[100px] rounded-full opacity-60" />
       </div>
 
-      <div ref={ref} className="max-w-6xl mx-auto relative z-10 space-y-12">
+      {/* Used .reveal class pattern like Collections for consistent visibility handling */}
+      <div ref={ref} className={`reveal max-w-6xl mx-auto relative z-10 space-y-12 ${isVisible ? 'is-visible' : ''}`}>
         
-        {/* Section Header - Fades in */}
-        <div className={`text-center space-y-4 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        {/* Section Header */}
+        <div className="text-center space-y-4">
           <div className="flex items-center justify-center gap-2 text-[#6D28D9] font-black text-[10px] uppercase tracking-[0.3em]">
              <Star className="w-3 h-3 fill-current" />
              <span>The Gold Standard</span>
@@ -42,7 +43,7 @@ const Spotlight: React.FC = () => {
             <div 
               key={i} 
               style={{ transitionDelay: `${i * 100}ms` }}
-              className={`group/card relative p-6 md:p-8 rounded-[2rem] bg-white border border-[#1E1B4B]/5 hover:border-[#6D28D9]/20 transition-all duration-700 ease-out overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 will-change-transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              className="group/card relative p-6 md:p-8 rounded-[2rem] bg-white border border-[#1E1B4B]/5 hover:border-[#6D28D9]/20 transition-all duration-500 ease-out overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1"
             >
               {/* Card Hover Gradient */}
               <div className="absolute inset-0 bg-gradient-to-br from-[#F5F3FF] to-white opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
